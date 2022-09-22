@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+html {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  height: 100%;
+  background-image: linear-gradient(to bottom right, #d2aef8, #00fad9);
+}
+h1, p {
+  font-family: 'Poppins';
+  
+}
+
+h1 {
+  font-size: 10vh;
+}
+
+p {
+  font-size: 3vh;
+}
+
+#hook{
+  margin-top: 15%;
+}
+
+
+
+#map_img{
+  height: 65%;
+  width: 65%;
+  margin-top:22%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+
+body {
+  margin: 0;
+  padding: 0;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;  
+  background-size: cover;
+}
+
+.page {
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+#left_div, #right_div, #description {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  flex: 50%;
+}
+#description {
+  max-width: 75%;
+}
+
+#start_button {
+  background-color: #00ace6;
+  border: none;
+  border-radius: 16px;
+  color: black;
+  padding: 7px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  font-family: 'Poppins';
+  margin-left: -15%;
+  cursor: pointer;
+}
+
+#login_button {
+  background-color: #ffffff;
+  border: none;
+  border-radius: 16px;
+  color: black;
+  padding: 7px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  font-family: 'Poppins';
+  margin-left: 15%;
+  cursor: pointer;
+}
+
+  #button_container{
+    display: flex;
+    width: 200px;
+    margin: 0 auto;
+    align-items: center;
+}
