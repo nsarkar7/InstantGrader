@@ -1,23 +1,23 @@
 <!DOCTYPE html>
-<html>
-
-  <script src="https://apis.google.com/js/platform.js" async defer></script>
-  <meta name="google-signin-client_id" content="189268090877-v8g6klov9vgs5dehq1ir9vqna5gtbp7n.apps.googleusercontent.com">
+<html> 
   <head>
+    <script src="/static/js/index.js"></script>
+
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/static/css/index.css">
     <link rel="icon" type="image/x-icon" href="/static/img/icon.ico">
-    <title>[PLACEHOLDER NAME]</title>
+    <title>Instant Grader</title>
   </head>
-    
   <body>
+    <div id="g_id_onload"
+         data-client_id="189268090877-v8g6klov9vgs5dehq1ir9vqna5gtbp7n.apps.googleusercontent.com"
+         data-callback="handleCredentialResponse">
+    </div>
     <div class="page">
       <div id="right_div">
         <h1 id="hook">Grading<br>Reimagined.</h1>
-        <!--<form action="/map">
-          <input type="submit" class="link_button" value="Launch the map" />
-  
-        </form>-->
+
         <p id="desc1">Save countless hours grading with our AI assistant.</p>
 
         <div id="button_container">
@@ -25,17 +25,15 @@
             <input type="submit" id="start_button" class="center_float" value="Get Started"/>  
             </form>
 
-            <button onclick="document.getElementById('id01').style.display='block'" id="login_button">Login</button>
+            <button onclick="document.getElementById('modal').style.display='block'" id="login_button">Login</button>
 
-            <div id="id01" class="modal">
-              <span onclick="document.getElementById('id01').style.display='none'"
-            class="close" title="Close Modal">&times;</span>
-            
-              <!-- Modal Content -->
+            <div id="modal" class="modal">
+
               <form class="modal-content animate" action="/action_page.php">
             
                 <div class="container">
-                  <div class="g-signin2" data-onsuccess="onSignIn"></div>
+                  <span onclick="document.getElementById('modal').style.display='none'" class="close" title="Close Modal">&times;</span>
+                  <div class="g_id_signin" data-type="standard"></div>
                 </div>
               
               </form>

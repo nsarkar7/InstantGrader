@@ -3,6 +3,9 @@ from datetime import datetime
 from flask import Flask, render_template, request, redirect
 from google.cloud import vision    
 import io
+import jwt
+from jwt import PyJWKClient
+
 app = Flask(__name__, template_folder='frontend')
 def detect_text(path):   
           
@@ -26,9 +29,20 @@ def detect_text(path):
 def homepage():
   return render_template("index.html")
 
-@app.route('/login')
-def login_page():
-  return render_template("login.html")
+
+@app.route('/verify')
+def verify_google_credentials():
+  encoded = str(request.args.get("str"))
+  url = "https://www.googleapis.com/oauth2/v3/certs"
+  jwks_client = PyJWKClient(url)
+  key = jwks_client.get_signing_key_from_jwt(encoded)
+  decoded = jwt.decode(encoded, key.key, algorithms=['RS256'], audience="189268090877-v8g6klov9vgs5dehq1ir9vqna5gtbp7n.apps.googleusercontent.com")
+  return decoded
+
+@app.route('/app')
+def main_app():
+  return render_template("app.html")
+
 
 if __name__ == '__main__':
     app.run(debug=True)
