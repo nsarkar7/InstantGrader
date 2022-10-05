@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+html {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    height: 100%;
+    background-color: rgb(255, 255, 255)
+}
+h1, p, h2{
+    font-family: 'Poppins';
+  
+}
+
+h1 {
+    font-size: 10vh;
+}
+
+h2 {
+    font-size:  40px;
+}
+p {
+    font-size: 3vh;
+}
+
+#assignments_text{
+    color: #313131;
+    top:0;
+    float:left;
+    float:top;
+    padding-left: 10px;
+    padding-top: 25px;
+    margin-left: 275px; 
+}
+
+#profile_button {
+    background-color: #ffffff;
+    border: solid;
+    border-width: 1px;
+    border-radius: 10px;
+    color: black;
+    border-color: #d2d3d3;
+    padding: 7px 16px;
+    margin: 7px 16px;
+    padding-right: 7px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 20px;
+    font-family: 'Poppins';
+    cursor: pointer;
+    float: right;
+}
+
+#profile_button_text{
+    vertical-align: middle;
+    padding-right: 5px;
+}
+#profile_button_img {
+    height: 30px;
+    vertical-align: middle;
+    border-radius: 50%;
+}
+
+#logout_button {
+    background-color: #000000;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    padding: 9px 16px;
+    margin-top: 7px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 20px;
+    font-family: 'Poppins';
+    cursor: pointer;
+    float: right;
+    margin-right: 5px;
+    font-weight: 500;
+}
+
+
+.sidebar {
+    height: 100%; 
+    width: 275px; 
+    position: fixed; 
+    z-index: 1;
+    top: 0; 
+    left: 0;
+    background-color: #fafafa; 
+    border-width: 1px;
+    border-right-color: #d2d3d3;
+    border-style: none solid none none;
+    float:left;
+    clear: both;
+}
+
+.header{
+    height: 115px; 
+    width: 100%; 
+    position: fixed; 
+    z-index: -1;
+    top: 0; 
+    left: 0;
+    background-color: #ffffff; 
+    border-width: 1px;
+    border-bottom-color: #d2d3d3;
+    border-style: none none solid none;
+    float:left;
+    clear: both;
+    
+}
+
+.main {
+    margin-left: 275px; 
+}

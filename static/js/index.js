@@ -8,7 +8,8 @@ function handleCredentialResponse(response){
             let user_data = JSON.parse(this.responseText);
             sessionStorage.setItem('name', user_data.name);
             sessionStorage.setItem('email', user_data.email);
-            sessionStorage.setItem('name', user_data.name);
+            sessionStorage.setItem('picture', user_data.picture);
+            sessionStorage.setItem('id', user_data.sub);
             window.location.replace("/app");
         }
     }    

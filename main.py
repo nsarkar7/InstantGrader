@@ -5,8 +5,12 @@ from google.cloud import vision
 import io
 import jwt
 from jwt import PyJWKClient
+from tinydb import TinyDB, Query
 
 app = Flask(__name__, template_folder='frontend')
+
+db = TinyDB('db.json')
+
 def detect_text(path):   
           
     client = vision.ImageAnnotatorClient()    
@@ -38,6 +42,12 @@ def verify_google_credentials():
   key = jwks_client.get_signing_key_from_jwt(encoded)
   decoded = jwt.decode(encoded, key.key, algorithms=['RS256'], audience="189268090877-v8g6klov9vgs5dehq1ir9vqna5gtbp7n.apps.googleusercontent.com")
   return decoded
+
+@app.route('/new_class')
+def create_class():
+  id = int(request.args.get("id"))
+  name = str(request.args.get("name"))
+  
 
 @app.route('/app')
 def main_app():
