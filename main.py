@@ -6,10 +6,11 @@ import io
 import jwt
 from jwt import PyJWKClient
 from tinydb import TinyDB, Query
+import json
 
 app = Flask(__name__, template_folder='frontend')
 
-db = TinyDB('db.json')
+db = TinyDB('static/db.json')
 
 def detect_text(path):   
           
@@ -45,9 +46,26 @@ def verify_google_credentials():
 
 @app.route('/new_class')
 def create_class():
-  id = int(request.args.get("id"))
-  name = str(request.args.get("name"))
+  class_name = str(request.args.get("class_name"))
+  class_password = str(request.args.get("class_password"))
+  teacher_id = str(request.args.get("teacher_id"))
+
+  classes_list = db.search(Query().teacher_id == teacher_id)
+
+  for individual_class in classes_list:
+    print(individual_class)
+    if individual_class['class_name'] == class_name:
+      return "Classes cannot have the same name", 400
+
+  db.insert({"teacher_id" : teacher_id, "class_name" : class_name, "class_password" : class_password, "assignments" : []})
+  return "", 201
   
+@app.route('/get_classes')
+def get_class():
+  teacher_id = str(request.args.get("teacher_id"))
+
+  classes_list = db.search(Query().teacher_id == teacher_id)
+  return classes_list, 200
 
 @app.route('/app')
 def main_app():

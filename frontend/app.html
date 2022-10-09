@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <script src="https://kit.fontawesome.com/0e24950e5e.js" crossorigin="anonymous"></script>
         <script src="/static/js/app.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="/static/css/app.css">
         <link rel="icon" type="image/x-icon" href="/static/img/icon.ico">
         <title>Instant Grader</title>
     </head>
-    <body onload="login_check()">
+    <body onload="get_classes(); display_user_info();">
         <div class="header">
             <h2 id="assignments_text"">Assignments</h2>
             <button id="profile_button"><span id="profile_button_text"></span><img id="profile_button_img" referrerpolicy="no-referrer"></button>
@@ -15,11 +16,33 @@
 
         </div>
 
-        <div class="sidebar">
-            
+        <div class="sidebar" id="sidebar">
+                <h3 id="classes_text">Classes</h3>
+                <button class="class_util_buttons"><i class="fa-solid fa-bars"></i></button>
+                <button onclick="document.getElementById('modal').style.display='block'" class="class_util_buttons"><i class="fa-solid fa-plus"></i></button>
+                <button class="class_button">sus</button>
+                <button class="class_button">sus</button>
+                <button class="class_button">sus</button>
         </div>
 
         <div class = "main">
+            <div id="modal" class="modal">
+
+                <div class="modal-content animate">
+              
+                  <div class="container">
+                    <span onclick="document.getElementById('modal').style.display='none'" class="close" title="Close Modal">&times;</span>
+                    <form class="new_class_form">
+                        <label class ="new_class_form_element" for="fname">Class Name:</label><br>
+                        <input class ="new_class_form_element" type="text" id="class_name" name="class_name"><br>
+                        <label class ="new_class_form_element" for="lname">Class Password:</label><br>
+                        <input class ="new_class_form_element" type="text" id="class_pwd" name="class_pwd"><br>
+                        <input class ="submit_new_class new_class_form_element" onclick="create_new_class()"type="button" value="Create Class">
+                    </form> 
+                  </div>
+                
+                </div>
+              </div>
         </div>
     </body>
 </html>

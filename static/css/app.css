@@ -7,7 +7,7 @@ html {
     height: 100%;
     background-color: rgb(255, 255, 255)
 }
-h1, p, h2{
+h1, p, h2, h3{
     font-family: 'Poppins';
   
 }
@@ -18,6 +18,10 @@ h1 {
 
 h2 {
     font-size:  40px;
+}
+
+h3{
+    font-size: 20px;
 }
 p {
     font-size: 3vh;
@@ -31,6 +35,15 @@ p {
     padding-left: 10px;
     padding-top: 25px;
     margin-left: 275px; 
+}
+
+#classes_text{
+    color: #313131;
+    top:0;
+    float:left;
+    float:top;
+    padding-left: 10px;
+    padding-top: 58px;
 }
 
 #profile_button {
@@ -78,11 +91,19 @@ p {
     font-weight: 500;
 }
 
-
+.class_util_buttons {
+    background-color: #fafafa;
+    top:0;
+    float: right;
+    margin-right: 8px;
+    margin-top: 85px;
+    border-radius: 50%;
+    border: none;
+}
 .sidebar {
     height: 100%; 
     width: 275px; 
-    position: fixed; 
+    position: absolute; 
     z-index: 1;
     top: 0; 
     left: 0;
@@ -93,6 +114,20 @@ p {
     float:left;
     clear: both;
 }
+
+
+.class_button {
+  position: relative;
+  width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+  border: none;
+  border-bottom: solid;
+  border-bottom-color: #d2d3d3;
+  border-width: 1px;
+  height: 25px;
+}
+
 
 .header{
     height: 115px; 
@@ -113,3 +148,77 @@ p {
 .main {
     margin-left: 275px; 
 }
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+    padding-top: 30vh;
+  }
+  
+  
+  .modal-content {
+    background-color: #fefefe;
+    margin: 5px auto; 
+    width: 350px; 
+    border-radius: 16px;
+  }
+  
+  .close {
+    float: right;
+    padding-top: 1%;
+    padding-right: 2%;
+    top: 0;
+    color: #000;
+    font-size: 15px;
+    font-weight: bold;
+  }
+  
+.new_class_form_element {
+    margin-bottom: 7%;
+    width: 85%;
+    font-family: 'Poppins';
+    float: center;
+}
+
+.new_class_form {
+    padding-left: 7%;
+}
+
+.submit_new_class{
+    
+}
+  
+  .animate {
+    -webkit-animation: animatezoom 0.6s;
+    animation: animatezoom 0.6s
+  }
+  
+  @-webkit-keyframes animatezoom {
+    from {-webkit-transform: scale(0)}
+    to {-webkit-transform: scale(1)}
+  }
+  
+  @keyframes animatezoom {
+    from {transform: scale(0)}
+    to {transform: scale(1)}
+  }
+  
+  
+  
+  @media screen and (max-width: 300px) {
+    span.psw {
+      display: block;
+      float: none;
+    }
+    .cancelbtn {
+      width: 100%;
+    }
+  }

@@ -112,17 +112,15 @@ body {
   padding-top: 30vh;
 }
 
-/* Modal Content/Box */
+
 .modal-content {
   background-color: #fefefe;
-  margin: 5px auto; /* 15% from the top and centered */
-  width: 250px; /* Could be more or less, depending on screen size */
+  margin: 5px auto; 
+  width: 250px; 
   border-radius: 16px;
 }
 
-/* The Close Button */
 .close {
-  /* Position it in the top right corner outside of the modal */
   float: right;
   padding-top: 1%;
   padding-right: 2%;
@@ -137,12 +135,7 @@ body {
   padding-bottom: 7%;
   padding-left: 3%;
 }
-/* Close button on hover */
-.close:hover,
-.close:focus {
-  color: rgb(61, 61, 61);
-  cursor: pointer;
-}
+
 
 .animate {
   -webkit-animation: animatezoom 0.6s;
