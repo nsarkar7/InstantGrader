@@ -17,11 +17,11 @@ h1 {
 }
 
 h2 {
-    font-size:  40px;
+    font-size:  48px;
 }
 
 h3{
-    font-size: 20px;
+    font-size: 24px;
 }
 p {
     font-size: 3vh;
@@ -34,7 +34,7 @@ p {
     float:top;
     padding-left: 10px;
     padding-top: 25px;
-    margin-left: 275px; 
+    margin-left: 300px; 
 }
 
 #classes_text{
@@ -43,7 +43,7 @@ p {
     float:left;
     float:top;
     padding-left: 10px;
-    padding-top: 58px;
+    padding-top: 60px;
 }
 
 #profile_button {
@@ -58,7 +58,7 @@ p {
     padding-right: 7px;
     text-align: center;
     text-decoration: none;
-    font-size: 20px;
+    font-size: 24px;
     font-family: 'Poppins';
     cursor: pointer;
     float: right;
@@ -83,7 +83,7 @@ p {
     margin-top: 7px;
     text-align: center;
     text-decoration: none;
-    font-size: 20px;
+    font-size: 24px;
     font-family: 'Poppins';
     cursor: pointer;
     float: right;
@@ -96,13 +96,13 @@ p {
     top:0;
     float: right;
     margin-right: 8px;
-    margin-top: 85px;
+    margin-top: 95px;
     border-radius: 50%;
     border: none;
 }
 .sidebar {
     height: 100%; 
-    width: 275px; 
+    width: 300px; 
     position: absolute; 
     z-index: 1;
     top: 0; 
@@ -128,9 +128,13 @@ p {
   height: 25px;
 }
 
+.class_button:hover {
+  background-color: #d8d7d7;
+}
+
 
 .header{
-    height: 115px; 
+    height: 135px; 
     width: 100%; 
     position: fixed; 
     z-index: -1;

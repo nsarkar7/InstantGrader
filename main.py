@@ -55,9 +55,12 @@ def create_class():
   for individual_class in classes_list:
     print(individual_class)
     if individual_class['class_name'] == class_name:
-      return "Classes cannot have the same name", 400
+      return {
+        "Error" : "Classes cannot have the same name"
+        }, 400
 
   db.insert({"teacher_id" : teacher_id, "class_name" : class_name, "class_password" : class_password, "assignments" : []})
+  
   return "", 201
   
 @app.route('/get_classes')
@@ -66,6 +69,37 @@ def get_class():
 
   classes_list = db.search(Query().teacher_id == teacher_id)
   return classes_list, 200
+
+@app.route('/new_assignment')
+def new_assignment():
+  teacher_id = str(request.args.get("teacher_id"))
+  class_name = str(request.args.get("class_name"))
+  assignment_name = str(request.args.get("assignment_name"))
+  due_date = str(request.args.get("due_date"))
+  
+  individual_class = db.get(Query().fragment({'teacher_id': teacher_id, 'class_name': class_name}))
+  individual_class = classes_list[0]
+
+  assignment_list = individual_class.assignments
+  new_assignment_list = []
+
+  for assignment in assignment_list:
+    new_assignment_list.append(assignment)
+  
+  new_assignment_list.append({
+    "assignment_name" : assignment_name,
+    "due_date" : due_date,
+    "questions" : {},
+    "scores" : {}
+  })
+
+  db.update({'assignments': new_assignment_list}, doc_ids=[individual_class.doc_id])
+  
+  return "", 201
+
+  
+  
+
 
 @app.route('/app')
 def main_app():
