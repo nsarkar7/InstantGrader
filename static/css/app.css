@@ -5,7 +5,8 @@ html {
     padding: 0;
     overflow: hidden;
     height: 100%;
-    background-color: rgb(255, 255, 255)
+    background-color: rgb(255, 255, 255);
+    font-family: 'Poppins';
 }
 h1, p, h2, h3{
     font-family: 'Poppins';
@@ -64,6 +65,39 @@ p {
     float: right;
 }
 
+.modal_button_container{
+  text-align: center;
+}
+.modal_button {
+  background-color: #ffffff;
+  border: solid;
+  border-width: 1px;
+  border-radius: 10px;
+  color: black;
+  border-color: #d2d3d3;
+  padding: 7px 16px;
+  text-decoration: none;
+  font-size: 14px;
+  font-family: 'Poppins';
+  cursor: pointer;
+}
+.new_assignment_button {
+  background-color: #ffffff;
+    border: solid;
+    border-width: 1px;
+    border-radius: 10px;
+    color: black;
+    border-color: #d2d3d3;
+    padding: 7px 16px;
+    margin-left: 20px;
+    margin-top: 75px; 
+    text-align: center;
+    text-decoration: none;
+    font-size: 24px;
+    font-family: 'Poppins';
+    cursor: pointer;
+    float: left;
+}
 #profile_button_text{
     vertical-align: middle;
     padding-right: 5px;
@@ -100,6 +134,7 @@ p {
     border-radius: 50%;
     border: none;
 }
+
 .sidebar {
     height: 100%; 
     width: 300px; 
@@ -149,8 +184,12 @@ p {
     
 }
 
+.no_assignments_text {
+  text-align: center;
+}
 .main {
-    margin-left: 275px; 
+    margin-left: 300px;
+    margin-top: 175px; 
 }
 
 .modal {
@@ -171,7 +210,7 @@ p {
   .modal-content {
     background-color: #fefefe;
     margin: 5px auto; 
-    width: 350px; 
+    width: 600px; 
     border-radius: 16px;
   }
   
@@ -187,19 +226,55 @@ p {
   
 .new_class_form_element {
     margin-bottom: 7%;
-    width: 85%;
+    width: 90%;
     font-family: 'Poppins';
-    float: center;
+    
 }
 
+
 .new_class_form {
+    padding-top: 7%;
     padding-left: 7%;
 }
 
+.submit_button_container {
+  padding-right: 7%;
+  text-align: center;
+
+}
 .submit_new_class{
-    
+  font-family: 'Poppins';
+  margin-bottom: 7%;
+}
+
+.new_assignment_form_element {
+  margin-bottom: 7%;
+  width: 90%;
+  font-family: 'Poppins';
+}
+
+.new_assignment_form {
+  padding-top: 7%;
+  padding-left: 7%;
+}
+
+.new_assignment_container {
+  display: flex;
+}
+.answer_table {
+  flex:1;
+}
+
+.create_assignment_button {
+  margin-right: 7%;
+  margin-bottom: 7%;
+}
+
+.new_question_button {
+  margin-top: 7%;
 }
   
+
   .animate {
     -webkit-animation: animatezoom 0.6s;
     animation: animatezoom 0.6s
