@@ -76,20 +76,20 @@ def new_assignment():
   class_name = str(request.args.get("class_name"))
   assignment_name = str(request.args.get("assignment_name"))
   due_date = str(request.args.get("due_date"))
+  answers = json.loads(str((request.args.get(("answers")))))
   
   individual_class = db.get(Query().fragment({'teacher_id': teacher_id, 'class_name': class_name}))
-  individual_class = classes_list[0]
-
-  assignment_list = individual_class.assignments
+  print(individual_class)
+  print(answers)
+  assignment_list = individual_class.get("assignments")
   new_assignment_list = []
-
   for assignment in assignment_list:
     new_assignment_list.append(assignment)
   
   new_assignment_list.append({
     "assignment_name" : assignment_name,
     "due_date" : due_date,
-    "questions" : {},
+    "questions" : answers,
     "scores" : {}
   })
 

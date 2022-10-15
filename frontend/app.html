@@ -52,26 +52,24 @@
                         <div class="assignment_details">
                             <form class="new_assignment_form">
                                 <label class ="new_assignment_form_element">Assignment Name:</label><br>
-                                <input class ="new_assignment_form_element" type="text" id="class_name" name="class_name"><br>
+                                <input class ="new_assignment_form_element" type="text" id="assignment_name" name="assignment_name"><br>
                                 <label class ="new_assignment_form_element" larger_font>Due Date:</label><br>
-                                <input class ="new_assignment_form_element" type="date" id="class_pwd" name="class_pwd"><br>
+                                <input class ="new_assignment_form_element" type="date" id="assignment_due_date" name="assignment_due_date"><br>
                                 <div class = "modal_button_container">
-                                <input class ="modal_button create_assignment_button" onclick="create_new_assignment()"type="button" value="Create Assignment">
+                                <input class ="modal_button create_assignment_button" onclick="create_assignment()"type="button" value="Create Assignment">
                                 </div>
                             </form> 
                         </div>
                         
-                        <div class="answer_table">
+                        <div class="table">
                             <div class="modal_button_container">
-                                <button class="modal_button new_question_button">Add Question</button>
+                                <button class="modal_button new_question_button" onclick="add_answer()">Add Question</button>
 
-                                <table>
-                                    <tr>
-                                        <td>Answer 1:</td>
-                                        <td><input type="text"></td>
-                                    </tr>
-                                </table>
+                            
                             </div>
+                            <table id="answers_table" class="answers_table">
+
+                            </table>
                         </div>
                     </div>
                 

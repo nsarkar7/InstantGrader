@@ -1,1 +1,1 @@
-{"_default": {"1": {"teacher_id": "110828162155152742740", "class_name": "e", "class_password": "e", "assignments": []}, "2": {"teacher_id": "110828162155152742740", "class_name": "sus", "class_password": "sus", "assignments": []}, "3": {"teacher_id": "110828162155152742740", "class_name": "among", "class_password": "among", "assignments": []}}}
+{"_default": {"1": {"teacher_id": "110828162155152742740", "class_name": "sus", "class_password": "sus", "assignments": [{"assignment_name": "awd", "due_date": "2022-10-22", "questions": {"0": "e"}, "scores": {}}]}}}

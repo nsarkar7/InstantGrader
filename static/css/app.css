@@ -240,8 +240,14 @@ p {
 .submit_button_container {
   padding-right: 7%;
   text-align: center;
+  
 
 }
+
+.answers_table {
+  margin-bottom: 7%;
+}
+
 .submit_new_class{
   font-family: 'Poppins';
   margin-bottom: 7%;
@@ -261,7 +267,7 @@ p {
 .new_assignment_container {
   display: flex;
 }
-.answer_table {
+.table {
   flex:1;
 }
 
@@ -270,8 +276,18 @@ p {
   margin-bottom: 7%;
 }
 
+.assignment_button {
+  width: 100%;
+  display: flex;
+}
+
 .new_question_button {
   margin-top: 7%;
+  margin-bottom: 7%;
+}
+
+.table_input_cell {
+  width: 100%;
 }
   
 
