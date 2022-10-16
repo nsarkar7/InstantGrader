@@ -86,7 +86,10 @@ def new_assignment():
   for assignment in assignment_list:
     new_assignment_list.append(assignment)
   
+  submit_link = "/student/submit/" + teacher_id + "/" + class_name + "/" + assignment_name
+
   new_assignment_list.append({
+    "submit_link" : submit_link,
     "assignment_name" : assignment_name,
     "due_date" : due_date,
     "questions" : answers,
@@ -97,14 +100,31 @@ def new_assignment():
   
   return "", 201
 
+def render_submit_page():
+  return render_template("submit.html")
+
+def route_submit_pages():
+  database = db.all()
   
-  
+  for individual_class in database:
+    assignments = individual_class["assignments"]
+    teacher_id = individual_class["teacher_id"]
+    class_name = individual_class["class_name"]
+
+    for assignment in assignments:
+      assignment_name = assignment["assignment_name"]
+      link = "/student/submit/" + teacher_id + "/" + class_name + "/" + assignment_name
+
+      app.add_url_rule(link, 'render_submit_page', render_submit_page)
+    
+      
 
 
 @app.route('/app')
 def main_app():
   return render_template("app.html")
 
+route_submit_pages()
 
 if __name__ == '__main__':
     app.run(debug=True)

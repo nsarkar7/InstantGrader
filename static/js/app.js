@@ -27,6 +27,15 @@ function add_answer() {
 }
 
 
+function american_date_format(date) {
+    let year = date.substring(0, 4);
+    let month = date.substring(5, 7);
+    let day = date.substring (8, 10);
+    let new_date = month + "/" + day + "/" + year;
+    return new_date;
+}
+
+
 
 function display_user_info() {
     let name = sessionStorage.getItem("name");
@@ -62,14 +71,36 @@ function display_assignments(class_name) {
         }
     }
     for(let i=0; i<assignments.length; i++) {
+        let assignment = assignments[i];
         let main = document.getElementById("main");
-        let assignment_btn = document.createElement("button");       
-        let name_div = document.createElement("div");
-        let due_date_div = document.createElement("div");
-        let link_div = document.createElement("div");
+        let assignment_btn = document.createElement("button");
+        let icon = document.createElement("button");   
+        let name_text = document.createElement("h3");
+        let due_date_text = document.createElement("h3");
+        let link_button = document.createElement("button");
+        let link_button_container = document.createElement("div");
+        
+        icon.innerHTML = "<i class=\"fa-solid fa-book fa-2x\"></i>";
+        icon.id = "assignments_button_icon";
+        link_button_container.id = "assignments_button_link_button_container"
+        name_text.id = "assignments_button_name_text";
+        due_date_text.id = "assignments_button_due_date_text"
+        link_button.id = "assignments_button_link_button"
+        console.log(assignment);
+        name_text.innerHTML = assignment.assignment_name;
+        due_date_text.innerHTML = american_date_format(assignment.due_date);
+        link_button.innerHTML = "Copy Student Link"
+        link_button.onclick = function() {
+            navigator.clipboard.writeText(window.location.host + assignment.submit_link);
+        };
 
-        assignment_btn.innerHTML = selected_class_name;
         assignment_btn.className = "assignment_button";
+
+        assignment_btn.appendChild(icon);
+        assignment_btn.appendChild(name_text);
+        assignment_btn.appendChild(due_date_text);
+        assignment_btn.appendChild(link_button_container);
+        link_button_container.appendChild(link_button);
         main.appendChild(assignment_btn);
         console.log(assignments)
     }
