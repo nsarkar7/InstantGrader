@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://kit.fontawesome.com/0e24950e5e.js" crossorigin="anonymous"></script>
+        <script src="/static/js/submit.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="/static/css/app.css">
+        <link rel="stylesheet" href="/static/css/submit.css">
+        <link rel="icon" type="image/x-icon" href="/static/img/icon.ico">
+        <title>Instant Grader</title>
+    </head>
+    <body onload="display_assignment_info();">
+        <div class="header">
+            <h2 id="assignments_text""></h2>
+
+        </div>
+
+        <div class="sidebar" id="sidebar">
+                <h3 id="classes_text"></h3>
+        </div>
+
+        <div class = "main" id="main">
+            <form class="student_submit_form" style="position: absolute;">
+
+                <div class="inline_input_container" style="position: absolute;">
+                    <div class="inline_input_obj">
+                        <label class ="submit_form_text">First Name:</label><br>
+                        <input class ="submit_form_input" type="text" id="first_name" name="first_name">
+                    </div>
+
+                    <div class="inline_input_obj" style="margin-left: 50px">
+                        <label class ="submit_form_text">Last Name:</label><br>
+                        <input class ="submit_form_input" type="text" id="last_name" name="last_name">
+                        
+                    </div>
+                </div>
+
+                <div class="inline_input_obj" style="position : absolute; margin-top: 120px">
+                    <label class ="submit_form_text" style="padding-top: 50px">Class Password:</label><br>
+                    <input class ="submit_form_input" type="text" id="class_password" name="class_password">
+                </div>
+
+                <div class="inline_input_obj" style="margin-top: 250px">
+                    <label class="custom-file-upload">
+                        <input type="file" id="assignment_upload"/>
+                        <i class="fa fa-cloud-upload"></i> Upload Work
+                    </label>
+                </div>
+            </form> 
+        </div>
+    </body>
+</html>

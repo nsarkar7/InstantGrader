@@ -1,0 +1,49 @@
+.sidebar {
+  display: flex;
+    justify-content: center;
+  
+}
+
+#classes_text {
+  text-align: center;
+}
+
+.submit_form_text {
+  font-size: 30px;
+  color: #000000;
+  margin-left: 20px;
+}
+
+.submit_form_input {
+  height: 40px;
+  border-radius: 10px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #5e5e5e;
+  color: #5e5e5e;
+  width: 400px;
+  font-size: 18px;
+  margin-left: 20px;
+}
+
+.inline_input_container {
+  display: inline-flex;
+}
+
+.student_submit_form {
+  display: flex;
+}
+
+input[type="file"] {
+  display: none;
+}
+.custom-file-upload {
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 10px 12px;
+  cursor: pointer;
+  border-radius: 10px;
+  font-size: 18px;
+  vertical-align: middle;
+  margin-left: 20px;
+}
