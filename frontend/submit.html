@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/browser-image-compression@2.0.0/dist/browser-image-compression.js"></script>
         <script src="https://kit.fontawesome.com/0e24950e5e.js" crossorigin="anonymous"></script>
         <script src="/static/js/submit.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -42,11 +43,37 @@
 
                 <div class="inline_input_obj" style="margin-top: 250px">
                     <label class="custom-file-upload">
-                        <input type="file" id="assignment_upload"/>
+                        <input type="file" id="assignment_upload" onchange="save_image();"/>
                         <i class="fa fa-cloud-upload"></i> Upload Work
                     </label>
                 </div>
+
+                <div class="inline_input_obj" style="margin-top: 40px">
+                    <button class = "open_submit_details" onclick="show_data_prior_to_submission();" type="button">Next <i class="fa-solid fa-arrow-right-long"></i></button>
+                </div>
+
             </form> 
+
+            <div id="pre_submit_modal" class="modal">
+
+                <div class="modal_content animate">
+                    <span onclick="document.getElementById('pre_submit_modal').style.display='none'" class="close" title="Close Modal">&times;</span>
+                    <div class="pre_submit_modal_container">
+                            <h3 id="modal_title">Submission Details</h3>
+                            <h4 class="pre_submit_details_element" id="first_name_text"></h2>
+                            <h4 class="pre_submit_details_element" id="last_name_text"></h2>
+                            <h4 class="pre_submit_details_element" id="class_password_text"></h2>
+                            <div style="text-align: center;">
+                                <img class="assignment_image" id="assignment_image">
+                            </div>
+                            <div style="text-align: center; margin-right: 3%;">
+                                <button class = "pre_submit_modal_button" onclick="document.getElementById('pre_submit_modal').style.display='none'" type="button"><i class="fa-solid fa-arrow-left-long"></i> Back </button>
+                                <button class = "pre_submit_modal_button" onclick="submit_assignment();" type="button">Submit</button>
+                            </div>
+                    </div>
+                
+                </div>
+            </div>
         </div>
     </body>
 </html>

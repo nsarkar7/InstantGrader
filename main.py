@@ -7,27 +7,30 @@ import jwt
 from jwt import PyJWKClient
 from tinydb import TinyDB, Query
 import json
+import base64
 
 app = Flask(__name__, template_folder='frontend')
 
 db = TinyDB('static/db.json')
 
-def detect_text(path):   
-          
-    client = vision.ImageAnnotatorClient()    
-    with io.open(path, 'rb') as image_file:
-      content = image_file.read()    
+
+def detect_text2(base64_img):   
+    client = vision.ImageAnnotatorClient()
+    content = base64.b64decode(base64_img)  
+
+    image_context = vision.ImageContext(
+        language_hints=['en-t-i0-handwrit'])
+
+
     image = vision.Image(content=content)    
     
-    response = client.text_detection(image=image)    
+    response = client.text_detection(image=image, image_context=image_context)    
     texts = response.text_annotations   
     
     print('Texts:')    
     for text in texts:        
         print('\n"{}"'.format(text.description))        
-        vertices = (['({},{})'.format(vertex.x, vertex.y)                    
-                    for vertex in text.bounding_poly.vertices])        
-        print('bounds: {}'.format(','.join(vertices)))
+        
 #detect_text("data/test2.jpg")
 
 @app.route('/')
@@ -123,6 +126,24 @@ def route_submit_pages():
 @app.route('/app')
 def main_app():
   return render_template("app.html")
+
+@app.route('/submit',  methods=['POST'])
+def record_score():
+  teacher_id = str(request.json.get("teacher_id"))
+  class_name = str(request.json.get("class_name"))
+  assignment_name = str(request.json.get("assignment_name"))
+  first_name = str(request.json.get("first_name"))
+  last_name = str(request.json.get("last_name"))
+  class_password = str(request.json.get("class_password"))
+  image_b64 = str(request.json.get("assignment_image"))
+
+  image_b64 = image_b64.replace("data:image/jpeg;base64,", '')
+
+  detect_text2(image_b64)
+
+
+
+  return "", 201
 
 route_submit_pages()
 
