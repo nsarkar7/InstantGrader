@@ -14,7 +14,7 @@ app = Flask(__name__, template_folder='frontend')
 db = TinyDB('static/db.json')
 
 
-def detect_text2(base64_img):   
+def detect_text(base64_img):   
     client = vision.ImageAnnotatorClient()
     content = base64.b64decode(base64_img)  
 
@@ -26,12 +26,13 @@ def detect_text2(base64_img):
     
     response = client.text_detection(image=image, image_context=image_context)    
     texts = response.text_annotations   
-    
-    print('Texts:')    
+    text_string = ""
     for text in texts:        
-        print('\n"{}"'.format(text.description))        
+      text_string += text.description
+      #  print('\n"{}"'.format(text.description))   
+
+    return text_string 
         
-#detect_text("data/test2.jpg")
 
 @app.route('/')
 def homepage():
@@ -83,11 +84,8 @@ def new_assignment():
   
   individual_class = db.get(Query().fragment({'teacher_id': teacher_id, 'class_name': class_name}))
   print(individual_class)
-  print(answers)
   assignment_list = individual_class.get("assignments")
-  new_assignment_list = []
-  for assignment in assignment_list:
-    new_assignment_list.append(assignment)
+  new_assignment_list = assignment_list
   
   submit_link = "/student/submit/" + teacher_id + "/" + class_name + "/" + assignment_name
 
@@ -96,7 +94,7 @@ def new_assignment():
     "assignment_name" : assignment_name,
     "due_date" : due_date,
     "questions" : answers,
-    "scores" : {}
+    "scores" : []
   })
 
   db.update({'assignments': new_assignment_list}, doc_ids=[individual_class.doc_id])
@@ -136,12 +134,42 @@ def record_score():
   last_name = str(request.json.get("last_name"))
   class_password = str(request.json.get("class_password"))
   image_b64 = str(request.json.get("assignment_image"))
-
+  assignment_details = {}
   image_b64 = image_b64.replace("data:image/jpeg;base64,", '')
+  number_correct = 0
+  number_incorrect = 0
+  text_string = detect_text(image_b64)
 
-  detect_text2(image_b64)
 
+  individual_class = db.get(Query().fragment({'teacher_id': teacher_id, 'class_name': class_name}))
+  assignments = individual_class["assignments"]
+  
+  for assignment in individual_class["assignments"]:
+    if assignment["assignment_name"] == assignment_name:
+      assignment_details = assignment
 
+    questions = assignment_details["questions"]
+
+  for question in questions.items():
+    if str(question[1]) in text_string:
+      number_correct += 1
+    else:
+      number_incorrect += 1
+  
+  score = str(number_correct) + "/" + str(number_correct+number_incorrect)
+  name = last_name + ", " + first_name
+
+  assignment_details["scores"].append({
+    "first_name" : first_name,
+    "last_name" : last_name,
+    "score" : score
+  })
+
+  for assignment in assignments:
+    if assignment["assignment_name"] == assignment_details["assignment_name"]:
+      assignment = assignment_details
+  
+  db.update({'assignments': assignments}, doc_ids=[individual_class.doc_id])
 
   return "", 201
 
