@@ -8,6 +8,7 @@ from jwt import PyJWKClient
 from tinydb import TinyDB, Query
 import json
 import base64
+import urllib.parse
 
 app = Flask(__name__, template_folder='frontend')
 
@@ -86,8 +87,8 @@ def new_assignment():
   print(individual_class)
   assignment_list = individual_class.get("assignments")
   new_assignment_list = assignment_list
-  
-  submit_link = "/student/submit/" + teacher_id + "/" + class_name + "/" + assignment_name
+
+  submit_link = "/student/submit/" + urllib.parse.quote(teacher_id, safe='') + "/" + urllib.parse.quote(class_name, safe='') + "/" + urllib.parse.quote(assignment_name, safe='')
 
   new_assignment_list.append({
     "submit_link" : submit_link,
@@ -102,6 +103,7 @@ def new_assignment():
   return "", 201
 
 def render_submit_page():
+  print("sus")
   return render_template("submit.html")
 
 def route_submit_pages():
@@ -113,10 +115,10 @@ def route_submit_pages():
     class_name = individual_class["class_name"]
 
     for assignment in assignments:
-      assignment_name = assignment["assignment_name"]
-      link = "/student/submit/" + teacher_id + "/" + class_name + "/" + assignment_name
-
+      link = urllib.parse.unquote(assignment["submit_link"])
+      
       app.add_url_rule(link, 'render_submit_page', render_submit_page)
+      app.view_functions['render_submit_page'] = render_submit_page
     
       
 
@@ -124,6 +126,10 @@ def route_submit_pages():
 @app.route('/app')
 def main_app():
   return render_template("app.html")
+
+@app.route('/sus e')
+def sus():
+  return render_template("submit.html")
 
 @app.route('/submit',  methods=['POST'])
 def record_score():
@@ -174,6 +180,8 @@ def record_score():
   return "", 201
 
 route_submit_pages()
+
+print(app.url_map)
 
 if __name__ == '__main__':
     app.run(debug=True)

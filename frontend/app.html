@@ -26,7 +26,7 @@
         <div class = "main" id="main">
             <div id="new_class_modal" class="modal">
 
-                <div class="modal-content animate">
+                <div class="new_class_modal_content animate">
               
                   <div class="container">
                     <span onclick="document.getElementById('new_class_modal').style.display='none'" class="close" title="Close Modal">&times;</span>
@@ -36,7 +36,7 @@
                         <label class ="new_class_form_element">Class Password:</label><br>
                         <input class ="new_class_form_element" type="text" id="class_pwd" name="class_pwd"><br>
                         <div class = "submit_button_container">
-                        <input class ="submit_new_class" onclick="create_new_class()"type="button" value="Create Class">
+                        <input class ="modal_button submit_new_class" onclick="create_new_class()"type="button" value="Create Class">
                         </div>
                     </form> 
                   </div>
@@ -46,7 +46,7 @@
 
             <div id="new_assignment_modal" class="modal">
 
-                <div class="modal_content animate">
+                <div class="new_assignment_modal_content animate">
                     <span onclick="document.getElementById('new_assignment_modal').style.display='none'" class="close" title="Close Modal">&times;</span>
                     <div class="new_assignment_container">
                         <div class="assignment_details">
@@ -75,7 +75,17 @@
                 
                 </div>
             </div>
+            <div id="assignment_results_modal" class="modal">
 
+                <div class="results_modal_content animate">
+                    <span onclick="document.getElementById('assignment_results_modal').style.display='none'" class="close" title="Close Modal">&times;</span>
+                    <div class="results_container" id="results_container">
+                        <table id="results_table" class="results_table">
+
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
     </body>
 </html>

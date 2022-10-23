@@ -207,10 +207,17 @@ p {
   }
   
   
-  .modal_content {
+  .new_assignment_modal_content {
     background-color: #fefefe;
     margin: 5px auto; 
     width: 600px; 
+    border-radius: 16px;
+  }
+
+  .new_class_modal_content {
+    background-color: #fefefe;
+    margin: 5px auto; 
+    width: 350px; 
     border-radius: 16px;
   }
   
@@ -225,29 +232,34 @@ p {
   }
   
 .new_class_form_element {
-    margin-bottom: 7%;
-    width: 90%;
+    margin-bottom: 5%;
+    width: 94%;
     font-family: 'Poppins';
     
 }
-
+.results_modal_content {
+  background-color: #fefefe;
+  margin: 5px auto; 
+  width: 800px; 
+  border-radius: 16px;
+}
 
 .new_class_form {
-    padding-top: 7%;
-    padding-left: 7%;
+    padding-top: 5%;
+    padding-left: 3%;
 }
 
 .submit_button_container {
   padding-right: 7%;
   text-align: center;
-  
-
 }
 
 .answers_table {
   margin-bottom: 7%;
 }
-
+.results_table {
+  margin-bottom: 7%;
+}
 .submit_new_class{
   font-family: 'Poppins';
   margin-bottom: 7%;
@@ -336,6 +348,35 @@ p {
   font-size: 14px;
   font-family: 'Poppins';
   cursor: pointer;
+}
+
+.result_button{
+  width: 100%;
+  display: flex;
+  background-color: #ffffff;
+  border: solid;
+  border-width: 1px;
+  border-radius: 10px;
+  color: black;
+  border-color: #d2d3d3;
+  padding: 7px 16px;
+  text-decoration: none;
+  font-size: 14px;
+  font-family: 'Poppins';
+  cursor: pointer;
+  margin-bottom: 25px;
+}
+
+#results_button_name_text{
+  text-align: left;
+  flex-basis: 75%;
+  margin-left: 15px;
+}
+
+#results_button_score_text{
+  text-align: right;
+  flex-basis: 25%;
+  margin-right: 15px;
 }
 
 .create_assignment_button {
