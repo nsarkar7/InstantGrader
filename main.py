@@ -84,7 +84,7 @@ def new_assignment():
   answers = json.loads(str((request.args.get(("answers")))))
   
   individual_class = db.get(Query().fragment({'teacher_id': teacher_id, 'class_name': class_name}))
-  print(individual_class)
+
   assignment_list = individual_class.get("assignments")
   new_assignment_list = assignment_list
 
@@ -99,29 +99,12 @@ def new_assignment():
   })
 
   db.update({'assignments': new_assignment_list}, doc_ids=[individual_class.doc_id])
-  
+
   return "", 201
 
 def render_submit_page():
   print("sus")
   return render_template("submit.html")
-
-def route_submit_pages():
-  database = db.all()
-  
-  for individual_class in database:
-    assignments = individual_class["assignments"]
-    teacher_id = individual_class["teacher_id"]
-    class_name = individual_class["class_name"]
-
-    for assignment in assignments:
-      link = urllib.parse.unquote(assignment["submit_link"])
-      
-      app.add_url_rule(link, 'render_submit_page', render_submit_page)
-      app.view_functions['render_submit_page'] = render_submit_page
-    
-      
-
 
 @app.route('/app')
 def main_app():
@@ -179,9 +162,19 @@ def record_score():
 
   return "", 201
 
-route_submit_pages()
+@app.route('/student/submit/<teacher_id>/<class_name>/<assignment_name>')
+def route_submit_pages(teacher_id, class_name, assignment_name):
+  individual_class = db.get(Query().fragment({'teacher_id': teacher_id, 'class_name': class_name}))
+  assignment_list = individual_class.get("assignments")
 
-print(app.url_map)
+
+  for assignment in assignment_list:
+    if assignment["assignment_name"] == assignment_name:
+
+      return render_template("submit.html")
+  
+  return "", 400
+  
 
 if __name__ == '__main__':
     app.run(debug=True)

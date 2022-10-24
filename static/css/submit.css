@@ -27,6 +27,13 @@
   padding-left: 10px;
 }
 
+.submit_modal_content {
+  background-color: #fefefe;
+  margin: 5px auto; 
+  width: 700px; 
+  border-radius: 16px;
+}
+
 .inline_input_container {
   display: inline-flex;
 }

@@ -228,8 +228,8 @@ function view_results(assignment_name) {
         
         let results_container = document.getElementById("results_container")
         let result_btn = document.createElement("button");
-        let name_text = document.createElement("h3")
-        let score_text = document.createElement("h3")
+        let name_text = document.createElement("h4")
+        let score_text = document.createElement("h4")
 
         name_text.id = "results_button_name_text"
         score_text.id = "results_button_score_text"
