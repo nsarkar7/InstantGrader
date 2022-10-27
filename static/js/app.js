@@ -1,6 +1,7 @@
 var selected_class_name = null;
 var classes_list = {};
 var questions_added = 0;
+var csv_text;
 
 function login_check() {
     if(sessionStorage.getItem("name") === null || sessionStorage.getItem("email") === null || sessionStorage.getItem("picture") === null){
@@ -35,7 +36,45 @@ function american_date_format(date) {
     return new_date;
 }
 
+function parse_csv(str) {
 
+    let headers = str.slice(0, str.indexOf("\n")).split(",");
+  
+
+    let rows = str.slice(str.indexOf("\n") + 1).split("\n");
+  
+
+    let array = rows.map(function (row) {
+      let values = row.split(",");
+      let element = headers.reduce(function (object, header, i) {
+        object[header] = values[i];
+        return object;
+      }, {});
+      return element;
+    });
+  
+
+    return array;
+  }
+  
+
+function save_csv() {
+    let file = document.getElementById("student_details_upload").files[0];
+    let reader = new FileReader();
+    csv_file = file;
+
+    reader.addEventListener("load", () => {
+
+        csv_text = parse_csv(reader.result);
+        
+      }, false);
+    
+      if (file) {
+        reader.readAsText(file);
+      }
+
+
+}
 
 function display_user_info() {
     let name = sessionStorage.getItem("name");
@@ -51,7 +90,7 @@ function display_assignments(class_name) {
     get_classes();
     let assignments = [];
     let selected_class = null;
-
+    
     for(let i=0; i<classes_list.length; i++) {
         let individual_class = classes_list[i];
         if(class_name == individual_class.class_name){
@@ -62,7 +101,7 @@ function display_assignments(class_name) {
             break;
         }
     }
-
+    console.log(selected_class)
     if(assignments.length == 0) {
         if(document.getElementById("no_assignments_text") == undefined){
             let main = document.getElementById("main");
@@ -73,8 +112,38 @@ function display_assignments(class_name) {
             main.appendChild(no_assignments_text);
         }
     }
+
+
+
     for(let i=0; i<assignments.length; i++) {
         let assignment = assignments[i];
+
+        let submitted = 0;
+        let not_submitted = 0;
+
+        for(let j=0; j<selected_class.student_data.length; j++) {
+            let match = false;
+            let student = selected_class.student_data[j];
+            let id = student.student_id;
+
+            for(let k=0; k<assignment.scores.length; k++){
+                let score_student_id = assignment.scores[k].student_id;
+
+                if(score_student_id == id) {
+                    match = true;
+                    break;
+                }
+            }
+
+            if(match == true) {
+                submitted++;
+            }
+            else {
+                not_submitted++
+            }
+            
+        }
+
         let main = document.getElementById("main");
         let assignment_btn = document.createElement("button");
         let icon = document.createElement("button");   
@@ -82,6 +151,23 @@ function display_assignments(class_name) {
         let due_date_text = document.createElement("h3");
         let link_button = document.createElement("button");
         let link_button_container = document.createElement("div");
+        let submitted_amount_button = document.createElement("div");
+        let not_submitted_amount_button = document.createElement("div");
+        let submitted_amount_text = document.createElement("h3");
+        let not_submitted_amount_text = document.createElement("h3");
+        submitted_amount_text.innerHTML = "Number Submitted"
+        not_submitted_amount_text.innerHTML = "Number Not Submitted"
+        let submitted_amount_num = document.createElement("h2");
+        let not_submitted_amount_num = document.createElement("h2");
+
+        submitted_amount_num.innerHTML = submitted;
+        not_submitted_amount_num.innerHTML = not_submitted;
+        submitted_amount_button.id = "assignments_button_submitted_amount_button";
+        submitted_amount_text.id = "assignments_button_submitted_amount_text";
+        submitted_amount_num.id = "assignments_button_submitted_amount_num";
+        not_submitted_amount_button.id = "assignments_button_submitted_amount_button";
+        not_submitted_amount_text.id = "assignments_button_submitted_amount_text";
+        not_submitted_amount_num.id = "assignments_button_submitted_amount_num";
         
         icon.innerHTML = "<i class=\"fa-solid fa-book fa-2x\"></i>";
         icon.id = "assignments_button_icon";
@@ -100,8 +186,17 @@ function display_assignments(class_name) {
         assignment_btn.onclick = function(){view_results(assignment.assignment_name)};
         assignment_btn.appendChild(icon);
         assignment_btn.appendChild(name_text);
+        assignment_btn.appendChild(submitted_amount_button);
+        assignment_btn.appendChild(not_submitted_amount_button);
         assignment_btn.appendChild(due_date_text);
         assignment_btn.appendChild(link_button_container);
+        submitted_amount_button.appendChild(submitted_amount_text);
+
+        submitted_amount_button.appendChild(submitted_amount_num);
+        not_submitted_amount_button.appendChild(not_submitted_amount_text);
+
+        not_submitted_amount_button.appendChild(not_submitted_amount_num);
+
         link_button_container.appendChild(link_button);
         main.appendChild(assignment_btn);
     }
@@ -149,24 +244,33 @@ function create_new_class() {
     let class_password = document.getElementById("class_pwd").value;
     let teacher_id = sessionStorage.getItem("id");
 
+    let content = {
+        "class_name": class_name,
+        "class_password": class_password,
+        "teacher_id": teacher_id,
+        "student_data": csv_text
+    };
+
     new_class_request = new XMLHttpRequest();
+    new_class_request.open("POST", "/new_class", false);
+    new_class_request.setRequestHeader('accept', 'application/json, text/plain, */*');
+    new_class_request.setRequestHeader('accept_language', 'en-US,en;q=0.9');
+    new_class_request.setRequestHeader('content-type', 'application/json');
 
     new_class_request.onreadystatechange = function() {
         if (this.status == 201 && this.readyState == 4) {            
             get_classes();
-
+            
             document.getElementById('new_class_modal').style.display='none';
         }
     }
 
-    let link = "/new_class?class_name=" + class_name + "&class_password=" + class_password + "&teacher_id=" + teacher_id;
-
-    new_class_request.open("GET", link);
-
-    new_class_request.send();
+    
+    console.log(JSON.stringify(content))
+    new_class_request.send(JSON.stringify(content));
 
 }
-
+-
 function create_assignment() {
     let assignment_name = document.getElementById("assignment_name").value;
     let due_date = document.getElementById("assignment_due_date").value;

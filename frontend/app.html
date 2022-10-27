@@ -36,6 +36,10 @@
                         <label class ="new_class_form_element">Class Password:</label><br>
                         <input class ="new_class_form_element" type="text" id="class_pwd" name="class_pwd"><br>
                         <div class = "submit_button_container">
+                        <label class="custom-file-upload">
+                            <input type="file" id="student_details_upload" onchange="save_csv();"/>
+                            <i class="fa fa-cloud-upload"></i> Upload Student Info (.csv file)
+                        </label>
                         <input class ="modal_button submit_new_class" onclick="create_new_class()"type="button" value="Create Class">
                         </div>
                     </form> 
@@ -81,6 +85,16 @@
                     <span onclick="document.getElementById('assignment_results_modal').style.display='none'" class="close" title="Close Modal">&times;</span>
                     <div class="results_container" id="results_container">
                         <h3 id="modal_title">Student Scores</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div id="edit_results_modal" class="modal">
+
+                <div class="results_modal_content animate">
+                    <span onclick="document.getElementById('assignment_results_modal').style.display='none'" class="close" title="Close Modal">&times;</span>
+                    <div class="results_container" id="results_container">
+                        <h3 id="modal_title">Edit Student Scores</h3>
                     </div>
                 </div>
             </div>

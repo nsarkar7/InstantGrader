@@ -39,15 +39,18 @@ function show_data_prior_to_submission() {
     let first_name = document.getElementById("first_name").value;
     let last_name = document.getElementById("last_name").value;
     let class_password = document.getElementById("class_password").value;
+    let student_id = document.getElementById("student_id").value;
     let first_name_text = document.getElementById("first_name_text");
     let last_name_text = document.getElementById("last_name_text");
     let class_password_text = document.getElementById("class_password_text");
+    let student_id_text = document.getElementById("student_id_text");
     let image_display = document.getElementById("assignment_image");
     let modal = document.getElementById("pre_submit_modal");
 
     modal.style.display = "block";
     first_name_text.innerHTML = "First Name: " + first_name;
     last_name_text.innerHTML = "Last Name: " + last_name;
+    student_id_text.innerHTML = "Student ID: " + student_id;
     class_password_text.innerHTML = "Class Password: " + class_password;
 
     image_display.src = image_link;
@@ -59,6 +62,7 @@ function submit_assignment() {
                 "assignment_name" : assignment_name,
                 "first_name" : document.getElementById("first_name").value,
                 "last_name" : document.getElementById("last_name").value,
+                "student_id" : document.getElementById("student_id").value,
                 "class_password" : document.getElementById("class_password").value,
                 "assignment_image" : image_link
                 };
@@ -71,10 +75,9 @@ function submit_assignment() {
     
     submit_request.onreadystatechange = () => {
         if (submit_request.readyState === XMLHttpRequest.DONE && submit_request.status === 200) {
-          console.log("sus")
         }
       }
-    console.log(JSON.stringify(content));
+
     submit_request.send(JSON.stringify(content));
 
     document.getElementById('pre_submit_modal').style.display='none'

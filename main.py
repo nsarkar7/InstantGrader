@@ -1,7 +1,7 @@
 import requests, json, random, time, threading
 from datetime import datetime
 from flask import Flask, render_template, request, redirect
-from google.cloud import vision    
+from google.cloud import vision, storage
 import io
 import jwt
 from jwt import PyJWKClient
@@ -30,10 +30,21 @@ def detect_text(base64_img):
     text_string = ""
     for text in texts:        
       text_string += text.description
-      #  print('\n"{}"'.format(text.description))   
+ 
 
     return text_string 
         
+def upload_to_bucket(base64_img, name):
+  storage_client = storage.Client()
+  bucket = storage_client.bucket("cac-image-storage")
+  blob = bucket.blob(name)
+  content = base64.b64decode(base64_img)
+
+  blob.upload_from_string(content, content_type="image/jpeg")
+
+  print(f"{name} with contents {content} uploaded to cac-image-storage.")
+
+
 
 @app.route('/')
 def homepage():
@@ -49,22 +60,23 @@ def verify_google_credentials():
   decoded = jwt.decode(encoded, key.key, algorithms=['RS256'], audience="189268090877-v8g6klov9vgs5dehq1ir9vqna5gtbp7n.apps.googleusercontent.com")
   return decoded
 
-@app.route('/new_class')
+@app.route('/new_class', methods=['POST'])
 def create_class():
-  class_name = str(request.args.get("class_name"))
-  class_password = str(request.args.get("class_password"))
-  teacher_id = str(request.args.get("teacher_id"))
-
+  class_name = str(request.json.get("class_name"))
+  class_password = str(request.json.get("class_password"))
+  teacher_id = str(request.json.get("teacher_id"))
+  student_data = request.json.get("student_data")
+  print(student_data[1])
   classes_list = db.search(Query().teacher_id == teacher_id)
 
   for individual_class in classes_list:
-    print(individual_class)
+
     if individual_class['class_name'] == class_name:
       return {
         "Error" : "Classes cannot have the same name"
         }, 400
 
-  db.insert({"teacher_id" : teacher_id, "class_name" : class_name, "class_password" : class_password, "assignments" : []})
+  db.insert({"teacher_id" : teacher_id, "class_name" : class_name, "class_password" : class_password, "assignments" : [], "student_data" : student_data})
   
   return "", 201
   
@@ -110,10 +122,6 @@ def render_submit_page():
 def main_app():
   return render_template("app.html")
 
-@app.route('/sus e')
-def sus():
-  return render_template("submit.html")
-
 @app.route('/submit',  methods=['POST'])
 def record_score():
   teacher_id = str(request.json.get("teacher_id"))
@@ -121,6 +129,7 @@ def record_score():
   assignment_name = str(request.json.get("assignment_name"))
   first_name = str(request.json.get("first_name"))
   last_name = str(request.json.get("last_name"))
+  student_id = str(request.json.get("student_id"))
   class_password = str(request.json.get("class_password"))
   image_b64 = str(request.json.get("assignment_image"))
   assignment_details = {}
@@ -128,7 +137,6 @@ def record_score():
   number_correct = 0
   number_incorrect = 0
   text_string = detect_text(image_b64)
-
 
   individual_class = db.get(Query().fragment({'teacher_id': teacher_id, 'class_name': class_name}))
   assignments = individual_class["assignments"]
@@ -148,9 +156,12 @@ def record_score():
   score = str(number_correct) + "/" + str(number_correct+number_incorrect)
   name = last_name + ", " + first_name
 
+  upload_to_bucket(image_b64, student_id+assignment_name)
+
   assignment_details["scores"].append({
     "first_name" : first_name,
     "last_name" : last_name,
+    "student_id" : student_id,
     "score" : score
   })
 

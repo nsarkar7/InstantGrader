@@ -37,18 +37,23 @@
                 </div>
 
                 <div class="inline_input_obj" style="position : absolute; margin-top: 120px">
+                    <label class ="submit_form_text" style="padding-top: 50px">Student ID:</label><br>
+                    <input class ="submit_form_input" type="text" id="student_id" name="student_id">
+                </div>
+
+                <div class="inline_input_obj" style="position : absolute; margin-top: 240px">
                     <label class ="submit_form_text" style="padding-top: 50px">Class Password:</label><br>
                     <input class ="submit_form_input" type="text" id="class_password" name="class_password">
                 </div>
 
-                <div class="inline_input_obj" style="margin-top: 250px">
+                <div class="inline_input_obj" style="margin-top: 370px">
                     <label class="custom-file-upload">
                         <input type="file" id="assignment_upload" onchange="save_image();"/>
                         <i class="fa fa-cloud-upload"></i> Upload Work
                     </label>
                 </div>
 
-                <div class="inline_input_obj" style="margin-top: 40px">
+                <div class="inline_input_obj" style="margin-top: 30px">
                     <button class = "open_submit_details" onclick="show_data_prior_to_submission();" type="button">Next <i class="fa-solid fa-arrow-right-long"></i></button>
                 </div>
 
@@ -62,6 +67,7 @@
                             <h3 id="modal_title">Submission Details</h3>
                             <h4 class="pre_submit_details_element" id="first_name_text"></h2>
                             <h4 class="pre_submit_details_element" id="last_name_text"></h2>
+                            <h4 class="pre_submit_details_element" id="student_id_text"></h2>
                             <h4 class="pre_submit_details_element" id="class_password_text"></h2>
                             <div style="text-align: center;">
                                 <img class="assignment_image" id="assignment_image">
