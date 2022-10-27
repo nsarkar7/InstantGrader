@@ -162,7 +162,8 @@ def record_score():
     "first_name" : first_name,
     "last_name" : last_name,
     "student_id" : student_id,
-    "score" : score
+    "score" : score,
+    "unique_url_end" : student_id+assignment_name
   })
 
   for assignment in assignments:

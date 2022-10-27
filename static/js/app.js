@@ -270,7 +270,7 @@ function create_new_class() {
     new_class_request.send(JSON.stringify(content));
 
 }
--
+
 function create_assignment() {
     let assignment_name = document.getElementById("assignment_name").value;
     let due_date = document.getElementById("assignment_due_date").value;
@@ -318,10 +318,12 @@ function view_results(assignment_name) {
         }
     }
     let assignments = selected_class.assignments;
+    let selected_assignment;
 
     for(let i=0; i<assignments.length; i++){
         let assignment = assignments[i];
         if(assignment.assignment_name == assignment_name){
+            selected_assignment = assignment;
             results = assignment.scores
             break;
         }
@@ -340,10 +342,38 @@ function view_results(assignment_name) {
         name_text.innerHTML = name;
         score_text.innerHTML = result.score;
 
+        result_btn.onclick = () => open_edit_modal(result.student_id, selected_assignment, "https://storage.googleapis.com/cac-image-storage/" + result.student_id + assignment_name);
         result_btn.className = "result_button";
         result_btn.appendChild(name_text);
         result_btn.appendChild(score_text);
         results_container.appendChild(result_btn);
 
     }
+}
+
+function open_edit_modal(student_id, assignment, link) {
+
+    document.getElementById("assignment_results_modal").style.display = 'none';
+    document.getElementById("edit_results_modal").style.display = 'block';
+    document.getElementById("student_work_image").src = link;
+
+    let name_text = document.getElementById("name_text");
+    let student_id_text = document.getElementById("student_id_text");
+    let current_score_text = document.getElementById("current_score_text");
+    let input_text = document.getElementById("edit_results_input_text");
+    let scores = assignment.scores;
+    let student_data;
+
+    for(let i=0; i<scores.length; i++){
+        let selected_score = scores[i];
+
+        if(selected_score.student_id == student_id) {
+            student_data = selected_score;
+        }
+    }
+
+    name_text.innerHTML = "Name: " + student_data.last_name + ", " + student_data.first_name;
+    student_id_text.innerHTML = "Student ID: " + student_data.student_id;
+    current_score_text.innerHTML = "Current Score: " + student_data.score;
+    input_text.innerHTML = "/" + student_data.score.split('/')[1];
 }

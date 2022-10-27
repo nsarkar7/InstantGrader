@@ -40,7 +40,7 @@
                             <input type="file" id="student_details_upload" onchange="save_csv();"/>
                             <i class="fa fa-cloud-upload"></i> Upload Student Info (.csv file)
                         </label>
-                        <input class ="modal_button submit_new_class" onclick="create_new_class()"type="button" value="Create Class">
+                        <input class ="modal_button submit_new_class" onclick="create_new_class();"type="button" value="Create Class">
                         </div>
                     </form> 
                   </div>
@@ -60,7 +60,7 @@
                                 <label class ="new_assignment_form_element" larger_font>Due Date:</label><br>
                                 <input class ="new_assignment_form_element" type="date" id="assignment_due_date" name="assignment_due_date"><br>
                                 <div class = "modal_button_container">
-                                <input class ="modal_button create_assignment_button" onclick="create_assignment()"type="button" value="Create Assignment">
+                                <input class ="modal_button create_assignment_button" onclick="create_assignment();"type="button" value="Create Assignment">
                                 </div>
                             </form> 
                         </div>
@@ -91,10 +91,26 @@
 
             <div id="edit_results_modal" class="modal">
 
-                <div class="results_modal_content animate">
-                    <span onclick="document.getElementById('assignment_results_modal').style.display='none'" class="close" title="Close Modal">&times;</span>
-                    <div class="results_container" id="results_container">
-                        <h3 id="modal_title">Edit Student Scores</h3>
+                <div class="edit_results_modal_content animate">
+                    <span onclick="document.getElementById('edit_results_modal').style.display='none'" class="close" title="Close Modal">&times;</span>
+                    <h3 id="modal_title">Edit Student Score</h3>
+                    <div class="edit_results_container" id="results_container">
+
+                        <div class="edit_results_image_container">
+                            <img class="student_work_image" id="student_work_image">
+                        </div>
+                        <div class="edit_results_input">
+                            <h4 class="edit_results_details_element" id="name_text"></h4>
+                            <h4 class="edit_results_details_element" id="student_id_text"></h4>
+                            <h4 class="edit_results_details_element" id="current_score_text"></h4>
+                            <label class ="edit_results_details_element">New Score: </label><br>
+                            <div style="display: flex; justify-content: space-between;">
+                                <input class ="edit_results_details_num_input" type="text" id="new_score" name="new_score"><br>
+                                <h4 id="edit_results_input_text" class="edit_results_input_text"></h4>
+                            </div>
+                        </div>
+                            
+
                     </div>
                 </div>
             </div>
