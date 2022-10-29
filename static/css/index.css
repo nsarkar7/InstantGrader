@@ -3,9 +3,10 @@
 html {
   margin: 0;
   padding: 0;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: scroll;
   height: 100%;
-  background-image: linear-gradient(to bottom right, #d2aef8, #00fad9);
+  background: linear-gradient(to bottom right, #d2aef8, #00fad9) fixed;
 }
 h1, p, h2 {
   font-family: 'Poppins';
@@ -24,13 +25,15 @@ p {
 }
 
 #hook{
-  margin-top: 15%;
+  margin-top: 20%;
 }
 
 #demo_img{
-  height: 65%;
-  width: 65%;
-  margin-top:15%;
+  max-width: 800px;
+  max-height: 800px;
+  width:auto;
+  height:auto;
+  margin-top:5%;
   margin-left: auto;
   margin-right: auto;
   border-radius:25px;
@@ -45,10 +48,22 @@ body {
   background-size: cover;
 }
 
-.page {
+.page{
   margin: 0;
   padding: 0;
   display: flex;
+}
+
+#second_page_container{
+  text-align: center;
+    font-size: 30px;
+    color: white;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 500px;
+    width:100%;
 }
 
 #left_div, #right_div, #description {
@@ -56,6 +71,22 @@ body {
   margin-left: auto;
   margin-right: auto;
   flex: 50%;
+  height: 100vh;
+}
+
+#left_div{
+  transform: skewX(15deg);
+  background: #ffffff;
+  margin-right: -10vw;
+  padding-right: 10vw;
+}
+
+#anti_skew_container{
+  transform: skewX(-15deg);
+}
+
+#second_page_div_left #second_page_div_mid #second_page_div_right{
+  float: left; 
 }
 #description {
   max-width: 75%;

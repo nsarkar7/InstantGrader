@@ -100,18 +100,22 @@
                             <img class="student_work_image" id="student_work_image">
                         </div>
                         <div class="edit_results_input">
+                            <h4 class="edit_results_details_element" id="assignment_name_text"></h4>
                             <h4 class="edit_results_details_element" id="name_text"></h4>
                             <h4 class="edit_results_details_element" id="student_id_text"></h4>
                             <h4 class="edit_results_details_element" id="current_score_text"></h4>
-                            <label class ="edit_results_details_element">New Score: </label><br>
+                            <label class ="edit_results_details_element">New Score: </label>
                             <div style="display: flex; justify-content: space-between;">
-                                <input class ="edit_results_details_num_input" type="text" id="new_score" name="new_score"><br>
-                                <h4 id="edit_results_input_text" class="edit_results_input_text"></h4>
+                                <input class ="edit_results_details_num_input" type="text" id="new_score" name="new_score">
+                                <h4 id="edit_results_input_text" class="edit_results_input_text"></h4>    
                             </div>
-                        </div>
-                            
 
+                                <input id="submit_score_change" class="modal_button" onclick="edit_student_score()" type="button" value="Change Score">
+                        </div>
+                    
+                
                     </div>
+    
                 </div>
             </div>
         </div>

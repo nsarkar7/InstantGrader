@@ -174,6 +174,34 @@ def record_score():
 
   return "", 201
 
+@app.route('/change_score')
+def change_score():
+  teacher_id = str(request.args.get("teacher_id"))
+  student_id = str(request.args.get("student_id"))
+  assignment_name = str(request.args.get("assignment_name"))
+  new_score = str(request.args.get("new_score"))
+  class_name = str(request.args.get("class_name"))
+  assignment_details = {}
+
+  individual_class = db.get(Query().fragment({'teacher_id': teacher_id, 'class_name': class_name}))
+  assignments = individual_class["assignments"]
+  
+  for assignment in individual_class["assignments"]:
+    if assignment["assignment_name"] == assignment_name:
+      assignment_details = assignment
+
+  for student in assignment_details["scores"]:
+    if student["student_id"] == student_id:
+      student["score"] = new_score
+  
+  for assignment in assignments:
+    if assignment["assignment_name"] == assignment_details["assignment_name"]:
+      assignment = assignment_details
+  
+  db.update({'assignments': assignments}, doc_ids=[individual_class.doc_id])
+
+  return "", 201
+
 @app.route('/student/submit/<teacher_id>/<class_name>/<assignment_name>')
 def route_submit_pages(teacher_id, class_name, assignment_name):
   individual_class = db.get(Query().fragment({'teacher_id': teacher_id, 'class_name': class_name}))

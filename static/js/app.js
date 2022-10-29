@@ -101,7 +101,7 @@ function display_assignments(class_name) {
             break;
         }
     }
-    console.log(selected_class)
+
     if(assignments.length == 0) {
         if(document.getElementById("no_assignments_text") == undefined){
             let main = document.getElementById("main");
@@ -178,8 +178,9 @@ function display_assignments(class_name) {
         name_text.innerHTML = assignment.assignment_name;
         due_date_text.innerHTML = american_date_format(assignment.due_date);
         link_button.innerHTML = "Copy Student Link"
-        link_button.onclick = function() {
+        link_button.onclick = function(event) {
             navigator.clipboard.writeText(window.location.host + assignment.submit_link);
+            event.stopImmediatePropagation();
         };
 
         assignment_btn.className = "assignment_button";
@@ -357,6 +358,7 @@ function open_edit_modal(student_id, assignment, link) {
     document.getElementById("edit_results_modal").style.display = 'block';
     document.getElementById("student_work_image").src = link;
 
+    let assignment_name_text = document.getElementById("assignment_name_text");
     let name_text = document.getElementById("name_text");
     let student_id_text = document.getElementById("student_id_text");
     let current_score_text = document.getElementById("current_score_text");
@@ -372,8 +374,30 @@ function open_edit_modal(student_id, assignment, link) {
         }
     }
 
+    assignment_name_text.innerHTML = "Assignment: " + assignment.assignment_name;
     name_text.innerHTML = "Name: " + student_data.last_name + ", " + student_data.first_name;
     student_id_text.innerHTML = "Student ID: " + student_data.student_id;
     current_score_text.innerHTML = "Current Score: " + student_data.score;
     input_text.innerHTML = "/" + student_data.score.split('/')[1];
+}
+
+function edit_student_score(){
+    let assignment_name = document.getElementById("assignment_name_text").innerHTML.split("Assignment: ")[1];
+    let new_score = document.getElementById("new_score").value + document.getElementById("edit_results_input_text").innerHTML;
+    let student_id = document.getElementById("student_id_text").innerHTML.split("Student ID: ")[1];
+    let teacher_id = sessionStorage.getItem("id");
+
+    change_score_request = new XMLHttpRequest();
+
+    let link = "/change_score?teacher_id=" + teacher_id + "&new_score=" + encodeURIComponent(new_score) + "&student_id=" + student_id + "&assignment_name=" + assignment_name + "&class_name=" + selected_class_name;
+    
+    change_score_request.open("GET", link, false);
+    change_score_request.send();
+
+    if (get_classes_request.status === 200) {
+        document.getElementById('edit_results_modal').style.display='none'
+        get_classes();
+        view_results(assignment_name)
+    }
+
 }

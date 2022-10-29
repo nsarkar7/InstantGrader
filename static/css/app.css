@@ -499,6 +499,11 @@ p {
   padding-top: 3%
 }
 
+#submit_score_change{
+  margin-bottom: 25px;
+  margin-left: 30px;
+}
+
 input[type="file"] {
   display: none;
 }
@@ -521,7 +526,7 @@ input[type="file"] {
   width: auto;
   height: auto;
   margin-left: 30px;
-  margin-bottom: 25px;
+  margin-bottom: 10px;
 }
 
 
