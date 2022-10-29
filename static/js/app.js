@@ -59,7 +59,8 @@ function parse_csv(str) {
   
 
 function save_csv() {
-    let file = document.getElementById("student_details_upload").files[0];
+    let file_input = document.getElementById("student_details_upload");
+    let file = file_input.files[0];
     let reader = new FileReader();
     csv_file = file;
 
@@ -71,6 +72,7 @@ function save_csv() {
     
       if (file) {
         reader.readAsText(file);
+        file_input.parentNode.innerHTML = "<input type=\"file\" id=\"student_details_upload\" onchange=\"save_csv();\"/><i class=\"fa fa-check\"></i> Uploaded Student Info From csv!"
       }
 
 
@@ -177,8 +179,9 @@ function display_assignments(class_name) {
         link_button.id = "assignments_button_link_button"
         name_text.innerHTML = assignment.assignment_name;
         due_date_text.innerHTML = american_date_format(assignment.due_date);
-        link_button.innerHTML = "Copy Student Link"
+        link_button.innerHTML = "Copy Submit Link"
         link_button.onclick = function(event) {
+            this.innerHTML = "Copied!"
             navigator.clipboard.writeText(window.location.host + assignment.submit_link);
             event.stopImmediatePropagation();
         };

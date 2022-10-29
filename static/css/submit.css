@@ -93,8 +93,8 @@ input[type="file"] {
 }
 
 .assignment_image {
-  max-width: 600px;
-  max-height: 600px;
+  max-width: 50vw;
+  max-height: 50vh;
   width: auto;
   height: auto;
 }

@@ -21,9 +21,7 @@
         <p id="desc1">Save countless hours grading with our AI assistant.</p>
 
         <div id="button_container">
-            <form action="/signin">
-            <input type="submit" id="start_button" class="center_float" value="Get Started"/>  
-            </form>
+            <button id="start_button" onclick="window.scrollBy(0, window.innerHeight);" class="center_float">Get Started</button>  
 
             <button onclick="document.getElementById('modal').style.display='block'" id="login_button">Login</button>
 
@@ -43,7 +41,7 @@
       </div>
       <div id="left_div">
         <div id="anti_skew_container">
-          <img id="demo_img" src="/static/img/demo2.png" alt="Demo Image">
+          <img id="demo_img" src="/static/img/demo3.png" alt="Demo Image">
           <h2 id="img_desc">Your personal AI Grading<br>Assistant</h2>
         </div>
       </div>
@@ -52,13 +50,21 @@
     </div>
     <div id="second_page_container">
       <div id="second_page_div_left">
-        <h2 id="assign_desc">Among Us Balls</h2>
+        <h2 class="desc_large_text">Assign</h2>
+        <p class="desc_text">Use our clean, simple website, to assign your work to your students. </p>
       </div>
       <div id="second_page_div_mid">
-        <h2 id="assign_desc">Among Us Balls</h2>
+        <h2 class="desc_large_text">Submit</h2>
+        <p class="desc_text">Your students can upload their work right to our site. From there we handle the rest, and we grade their work for you!</p>
       </div>
       <div id="second_page_div_right">
-        <h2 id="assign_desc">Among Us Balls</h2>
+        <div id="sign_up_container" style="display: flex">
+          <h3 id="sign_up_text">Well, what are you waiting for?</h3>
+          <button id="sign_up_button" onclick="document.getElementById('modal').style.display='block'" class="center_float">Sign Up!</button>  
+        </div>
+        <h2 class="desc_large_text" id="graded_desc">Graded</h2>
+        <p class="desc_text">The moment your students submit, you can see their grade! If we messed up (we rarely do), you can easily change their score.</p>
+      
       </div>
     </div>
   </body>

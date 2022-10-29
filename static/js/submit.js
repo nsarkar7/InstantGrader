@@ -21,7 +21,8 @@ function display_assignment_info() {
 
 
 function save_image() {
-    let file = document.getElementById("assignment_upload").files[0];
+    let file_input = document.getElementById("assignment_upload");
+    let file = file_input.files[0];
     let reader = new FileReader();
     image_file = file;
     reader.addEventListener("load", () => {
@@ -31,6 +32,7 @@ function save_image() {
     
       if (file) {
         reader.readAsDataURL(file);
+        file_input.parentNode.innerHTML = "<input type=\"file\" id=\"assignment_upload\" onchange=\"save_image();\"/><i class=\"fa fa-check\"></i> Uploaded!"
       }
 
 
@@ -40,16 +42,14 @@ function show_data_prior_to_submission() {
     let last_name = document.getElementById("last_name").value;
     let class_password = document.getElementById("class_password").value;
     let student_id = document.getElementById("student_id").value;
-    let first_name_text = document.getElementById("first_name_text");
-    let last_name_text = document.getElementById("last_name_text");
+    let name_text = document.getElementById("name_text");
     let class_password_text = document.getElementById("class_password_text");
     let student_id_text = document.getElementById("student_id_text");
     let image_display = document.getElementById("assignment_image");
     let modal = document.getElementById("pre_submit_modal");
 
     modal.style.display = "block";
-    first_name_text.innerHTML = "First Name: " + first_name;
-    last_name_text.innerHTML = "Last Name: " + last_name;
+    name_text.innerHTML = "Name: " + last_name + ", " + first_name;
     student_id_text.innerHTML = "Student ID: " + student_id;
     class_password_text.innerHTML = "Class Password: " + class_password;
 

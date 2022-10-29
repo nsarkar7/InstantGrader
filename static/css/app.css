@@ -156,11 +156,13 @@ p {
   width: 100%;
   margin-left: 0;
   margin-right: 0;
+  margin:0;
   border: none;
   border-bottom: solid;
-  border-bottom-color: #d2d3d3;
+  border-bottom-color: #ffffff;
   border-width: 1px;
   height: 25px;
+  padding: 0;
 }
 
 .class_button:hover {

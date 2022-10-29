@@ -1,16 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
 html {
+  position: absolute;
   margin: 0;
   padding: 0;
   overflow-x: hidden;
   overflow-y: scroll;
   height: 100%;
-  background: linear-gradient(to bottom right, #d2aef8, #00fad9) fixed;
+  scroll-behavior: smooth;
+  background: linear-gradient(to bottom right, #0D1117, #0D1117) fixed;
 }
-h1, p, h2 {
+h1, p, h2, h3 {
   font-family: 'Poppins';
-  
+  color: #ffffff
 }
 
 h1 {
@@ -20,23 +22,26 @@ h1 {
 h2 {
   font-size:  5vh;
 }
+
+h3
+
 p {
   font-size: 3vh;
 }
 
 #hook{
   margin-top: 20%;
+  text-shadow: 0 0 128px #ffffff;
 }
 
 #demo_img{
-  max-width: 800px;
-  max-height: 800px;
-  width:auto;
+  max-width: 70vh;
   height:auto;
   margin-top:5%;
   margin-left: auto;
   margin-right: auto;
   border-radius:25px;
+  object-fit: contain;
 }
 
 body {
@@ -54,6 +59,16 @@ body {
   display: flex;
 }
 
+.desc_text{
+  margin: 0;
+}
+.desc_large_text{
+  margin-bottom: 1vh;
+  text-shadow: 0 0 64px #ffffff;
+}
+
+
+
 #second_page_container{
   text-align: center;
     font-size: 30px;
@@ -62,7 +77,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 500px;
+    height: 100vh;
     width:100%;
 }
 
@@ -75,28 +90,46 @@ body {
 }
 
 #left_div{
-  transform: skewX(15deg);
-  background: #ffffff;
-  margin-right: -10vw;
-  padding-right: 10vw;
+  transform: skewX(-30deg);
+  background: #000000;
+  margin-right: -25vw;
+  padding-right: 25vw;
 }
 
 #anti_skew_container{
-  transform: skewX(-15deg);
+  transform: skewX(30deg);
 }
 
-#second_page_div_left #second_page_div_mid #second_page_div_right{
-  float: left; 
+#second_page_div_left, #second_page_div_mid, #second_page_div_right{
+  float: left;
+  width: 100%;
+  height: 100%;
+  padding-left: 5vw;
+  padding-right: 5vw;
+}
+#second_page_div_left{
+  margin-top: 5%;
+}
+#second_page_div_mid{
+  margin-top: 25%;
+}
+#graded_desc{
+  margin-top: 95%;
 }
 #description {
   max-width: 75%;
 }
 
+#sign_up_text{
+  font-size: 16px;
+  
+}
+
+
 #start_button {
   background-color: #00ace6;
   border: none;
   border-radius: 16px;
-  color: black;
   padding: 7px 16px;
   text-align: center;
   text-decoration: none;
@@ -106,12 +139,31 @@ body {
   margin-left: -15%;
   cursor: pointer;
 }
+#sign_up_button{
+  background-color: #00ace6;
+  border: none;
+  border-radius: 16px;
+  margin: 7px -36px;
+  margin-left: 16px;
+  padding-left: 16px;
+  padding-right: 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  font-family: 'Poppins';
+  cursor: pointer;
+}
+
+#sign_up_container{
+  white-space: nowrap;
+  margin-left: 10vh;
+}
 
 #login_button {
   background-color: #ffffff;
   border: none;
   border-radius: 16px;
-  color: black;
   padding: 7px 16px;
   text-align: center;
   text-decoration: none;
