@@ -146,28 +146,29 @@ function display_assignments(class_name) {
             
         }
 
-        let main = document.getElementById("main");
-        let assignment_btn = document.createElement("button");
-        let icon = document.createElement("button");   
-        let name_text = document.createElement("h3");
-        let due_date_text = document.createElement("h3");
-        let link_button = document.createElement("button");
-        let link_button_container = document.createElement("div");
-        let submitted_amount_button = document.createElement("div");
-        let not_submitted_amount_button = document.createElement("div");
-        let submitted_amount_text = document.createElement("h3");
-        let not_submitted_amount_text = document.createElement("h3");
+        const main = document.getElementById("main");
+        const assignment_btn = document.createElement("button");
+        const icon = document.createElement("button");   
+        const name_text = document.createElement("h3");
+        const due_date_text = document.createElement("h3");
+        const link_button = document.createElement("button");
+        const link_button_container = document.createElement("div");
+        const submitted_amount_button = document.createElement("div");
+        const not_submitted_amount_button = document.createElement("div");
+        const submitted_amount_text = document.createElement("h3");
+        const not_submitted_amount_text = document.createElement("h3");
         submitted_amount_text.innerHTML = "Number Submitted"
         not_submitted_amount_text.innerHTML = "Number Not Submitted"
-        let submitted_amount_num = document.createElement("h2");
-        let not_submitted_amount_num = document.createElement("h2");
-
+        const submitted_amount_num = document.createElement("h2");
+        const not_submitted_amount_num = document.createElement("h2");
+        const due_date = document.createElement("h2");
+        const due_date_button = document.createElement("button");
         submitted_amount_num.innerHTML = submitted;
         not_submitted_amount_num.innerHTML = not_submitted;
         submitted_amount_button.id = "assignments_button_submitted_amount_button";
         submitted_amount_text.id = "assignments_button_submitted_amount_text";
         submitted_amount_num.id = "assignments_button_submitted_amount_num";
-        not_submitted_amount_button.id = "assignments_button_submitted_amount_button";
+        not_submitted_amount_button.id = "assignments_button_not_submitted_amount_button";
         not_submitted_amount_text.id = "assignments_button_submitted_amount_text";
         not_submitted_amount_num.id = "assignments_button_submitted_amount_num";
         
@@ -175,10 +176,13 @@ function display_assignments(class_name) {
         icon.id = "assignments_button_icon";
         link_button_container.id = "assignments_button_link_button_container"
         name_text.id = "assignments_button_name_text";
-        due_date_text.id = "assignments_button_due_date_text"
+        due_date_button.id = "assignments_button_submitted_amount_button";
+        due_date.id = "due_date"
+        due_date_text.id = "due_date_text";
         link_button.id = "assignments_button_link_button"
         name_text.innerHTML = assignment.assignment_name;
-        due_date_text.innerHTML = american_date_format(assignment.due_date);
+        due_date_text.innerHTML = "Due Date";
+        due_date.innerHTML = american_date_format(assignment.due_date);
         link_button.innerHTML = "Copy Submit Link"
         link_button.onclick = function(event) {
             this.innerHTML = "Copied!"
@@ -192,7 +196,7 @@ function display_assignments(class_name) {
         assignment_btn.appendChild(name_text);
         assignment_btn.appendChild(submitted_amount_button);
         assignment_btn.appendChild(not_submitted_amount_button);
-        assignment_btn.appendChild(due_date_text);
+        assignment_btn.appendChild(due_date_button);
         assignment_btn.appendChild(link_button_container);
         submitted_amount_button.appendChild(submitted_amount_text);
 
@@ -200,6 +204,9 @@ function display_assignments(class_name) {
         not_submitted_amount_button.appendChild(not_submitted_amount_text);
 
         not_submitted_amount_button.appendChild(not_submitted_amount_num);
+
+        due_date_button.appendChild(due_date_text);
+        due_date_button.appendChild(due_date)
 
         link_button_container.appendChild(link_button);
         main.appendChild(assignment_btn);

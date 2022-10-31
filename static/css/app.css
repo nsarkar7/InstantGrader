@@ -59,7 +59,7 @@ p {
     padding-right: 7px;
     text-align: center;
     text-decoration: none;
-    font-size: 24px;
+    font-size: 18px;
     font-family: 'Poppins';
     cursor: pointer;
     float: right;
@@ -117,7 +117,7 @@ p {
     margin-top: 7px;
     text-align: center;
     text-decoration: none;
-    font-size: 24px;
+    font-size: 18px;
     font-family: 'Poppins';
     cursor: pointer;
     float: right;
@@ -365,7 +365,7 @@ p {
 
 #assignments_button_name_text {
   text-align: left;
-  flex-basis: 45%;
+  flex-basis: 48%;
   margin-left: 15px;
 
 }
@@ -399,6 +399,17 @@ p {
 }
 
 #assignments_button_submitted_amount_button {
+  flex-basis: 17%;
+  color: black;
+  padding: 7px 16px;
+  text-decoration: none;
+  font-size: 14px;
+  font-family: 'Poppins';
+  cursor: pointer;
+  padding: 0;
+} 
+
+#assignments_button_not_submitted_amount_button {
   flex-basis: 20%;
   color: black;
   padding: 7px 16px;
@@ -406,6 +417,7 @@ p {
   font-size: 14px;
   font-family: 'Poppins';
   cursor: pointer;
+  padding: 0;
 } 
 
 #assignments_button_submitted_amount_text {
@@ -415,6 +427,18 @@ p {
 
 #assignments_button_submitted_amount_num {
   margin: 0;
+}
+
+#due_date_text {
+  font-size: 14px;
+  margin: 0;
+  margin-top: 0;
+}
+
+#due_date {
+  margin: 0;
+  margin-top: 15px;
+  font-size: 20px;
 }
 
 #assignments_button_submitted_amount_button {

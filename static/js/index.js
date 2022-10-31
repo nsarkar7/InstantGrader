@@ -16,4 +16,3 @@ function handleCredentialResponse(response){
     xhr.open("GET", reqUrl);
     xhr.send();
 }
-

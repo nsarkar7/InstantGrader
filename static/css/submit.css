@@ -9,13 +9,13 @@
 }
 
 .submit_form_text {
-  font-size: 30px;
+  font-size: 20px;
   color: #000000;
   margin-left: 20px;
 }
 
 .submit_form_input {
-  height: 40px;
+  height: 35px;
   border-radius: 10px;
   border-width: 1px;
   border-style: solid;
@@ -49,7 +49,7 @@ input[type="file"] {
 .custom-file-upload {
   border: 1px solid #ccc;
   display: inline-block;
-  padding: 10px 12px;
+  padding: 8px 10px;
   cursor: pointer;
   border-radius: 10px;
   font-size: 18px;
@@ -60,7 +60,7 @@ input[type="file"] {
 .open_submit_details {
   border: 1px solid #ccc;
   display: inline-block;
-  padding: 12px 12px;
+  padding: 10px 10px;
   cursor: pointer;
   border-radius: 10px;
   font-size: 18px;
@@ -76,8 +76,6 @@ input[type="file"] {
 .pre_submit_modal_container {
   padding-top: 1px;
 }
-
-
 
 .pre_submit_details_element {
   margin-left: 3%;

@@ -217,4 +217,4 @@ def route_submit_pages(teacher_id, class_name, assignment_name):
   
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', port=5000, debug=True)
