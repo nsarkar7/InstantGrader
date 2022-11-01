@@ -10,6 +10,9 @@ var assignment_name = nodeList[5];
 class_name = class_name.replaceAll('%20', ' ');
 assignment_name = assignment_name.replaceAll('%20', ' ');
 
+if (typeof screen.orientation == 'undefined') {
+  window.location.replace(`/student/submit/mobile/${teacher_id}/${class_name}/${assignment_name}`)
+}
 
 function display_assignment_info() {
     let assignment_name_text = document.getElementById("assignments_text");
@@ -57,16 +60,17 @@ function show_data_prior_to_submission() {
 }
 
 function submit_assignment() {
+    const next_button = document.getElementById("open_submit_details");
     let content = {"teacher_id": teacher_id,
-                "class_name": class_name,
-                "assignment_name" : assignment_name,
-                "first_name" : document.getElementById("first_name").value,
-                "last_name" : document.getElementById("last_name").value,
-                "student_id" : document.getElementById("student_id").value,
-                "class_password" : document.getElementById("class_password").value,
-                "assignment_image" : image_link
+      "class_name": class_name,
+      "assignment_name" : assignment_name,
+      "first_name" : document.getElementById("first_name").value,
+      "last_name" : document.getElementById("last_name").value,
+      "student_id" : document.getElementById("student_id").value,
+      "class_password" : document.getElementById("class_password").value,
+      "assignment_image" : image_link
                 };
-
+    
     let submit_request = new XMLHttpRequest();
     submit_request.open("POST", '/submit', true);
     submit_request.setRequestHeader('accept', 'application/json, text/plain, */*');
@@ -79,6 +83,8 @@ function submit_assignment() {
       }
 
     submit_request.send(JSON.stringify(content));
+    
+    next_button.innerHTML = "<i class=\"fa fa-check\"></i> Submitted!"
 
     document.getElementById('pre_submit_modal').style.display='none'
 }

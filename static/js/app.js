@@ -21,7 +21,7 @@ function add_answer() {
 
     let input = document.createElement("input");
     input.setAttribute('type',"text");
-    input.className = "table_input_cell";
+    input.className = "table_input_cell new_class_form_input";
     text_cell.innerHTML = "Answer " + (questions_added+1) + ":";
     input_cell.appendChild(input);
     questions_added++;
@@ -186,7 +186,7 @@ function display_assignments(class_name) {
         link_button.innerHTML = "Copy Submit Link"
         link_button.onclick = function(event) {
             this.innerHTML = "Copied!"
-            navigator.clipboard.writeText(window.location.host + assignment.submit_link);
+            navigator.clipboard.writeText("192.168.1.41:5000" + assignment.submit_link);
             event.stopImmediatePropagation();
         };
 
@@ -283,14 +283,16 @@ function create_new_class() {
 }
 
 function create_assignment() {
-    let assignment_name = document.getElementById("assignment_name").value;
-    let due_date = document.getElementById("assignment_due_date").value;
+    const table = document.getElementById("answers_table");
+    const assignment_name = document.getElementById("assignment_name").value;
+    const due_date = document.getElementById("assignment_due_date").value;
 
     let answers = document.getElementsByClassName("table_input_cell");
 
     let answers_obj = {};
 
     for(let i=0; i<answers.length; i++) {
+        console.log("sus")
         let answer = answers[i];
         answers_obj[i] = answer.value;
     }
@@ -339,6 +341,14 @@ function view_results(assignment_name) {
             break;
         }
     }
+
+    if(results.length == 0) {
+        let no_scores_text = document.createElement("h4");
+        no_scores_text.innerHTML = "Nothing Submitted Yet"
+        no_scores_text.id = "no_scores_text";
+        results_container.appendChild(no_scores_text);
+    }
+
     for(let i=0; i<results.length; i++){
         let result = results[i];
         let name = result.last_name + ", " + result.first_name; 

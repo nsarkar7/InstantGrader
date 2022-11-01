@@ -1,0 +1,68 @@
+
+
+button {
+    color: #000000;
+  }
+  
+
+.main {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.inline_input_obj{
+    text-align: center;
+    width: 90vw;
+    margin-right: 1vw;
+
+}
+
+.submit_form_text{
+    margin: 0;
+    padding: 0;
+}
+
+.submit_form_input{
+    margin: 0;
+    padding: 0;
+    padding-left: 10px;
+    width: 98%;
+}
+
+.custom-file-upload, .open_submit_details{
+    margin-left: 0;
+}
+
+.assignment_name_text{
+    position: absolute;
+    margin-top: 10px;
+    font-size: 32px;
+}
+
+.class_name_text{
+    position: absolute;
+    margin-top: 48px;
+    font-size: 20px;
+}
+
+.submit_modal_content {
+    background-color: #fefefe;
+    margin: 5px auto; 
+    width: 100vw;
+    height: 100vh; 
+}
+
+.modal{
+    padding-top: 0;
+    background-color: #ffffff;
+}
+
+.pre_submit_details_element{
+    margin-left: 0;
+}
+
+.pre_submit_modal_button{
+    margin-left: 0;
+}

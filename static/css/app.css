@@ -28,6 +28,10 @@ p {
     font-size: 3vh;
 }
 
+span {
+  cursor: pointer;
+}
+
 #assignments_text{
     color: #313131;
     top:0;
@@ -191,7 +195,7 @@ p {
 }
 .main {
     margin-left: 300px;
-    margin-top: 175px; 
+    margin-top: 164px; 
 }
 
 .modal {
@@ -280,7 +284,15 @@ p {
     margin-bottom: 5%;
     width: 94%;
     font-family: 'Poppins';
-    
+}
+
+.new_class_form_input {
+  border-radius: 10px;
+  height: 30px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #cccccc;
+  padding-left: 10px;
 }
 
 .results_modal_content {
@@ -327,6 +339,8 @@ p {
 }
 .table {
   flex:1;
+  max-height: 195px;
+  overflow-y: scroll;
 }
 
 .assignment_button {
@@ -378,7 +392,7 @@ p {
 }
 
 #assignments_button_link_button_container {
-  flex-basis: 10%;
+  flex-basis: 12%;
   display: flex;
   margin: auto;
 }
@@ -399,7 +413,7 @@ p {
 }
 
 #assignments_button_submitted_amount_button {
-  flex-basis: 17%;
+  flex-basis: 10%;
   color: black;
   padding: 7px 16px;
   text-decoration: none;
@@ -410,7 +424,7 @@ p {
 } 
 
 #assignments_button_not_submitted_amount_button {
-  flex-basis: 20%;
+  flex-basis: 12%;
   color: black;
   padding: 7px 16px;
   text-decoration: none;
@@ -437,8 +451,8 @@ p {
 
 #due_date {
   margin: 0;
-  margin-top: 15px;
-  font-size: 20px;
+  margin-top: 14px;
+  font-size: 18px;
 }
 
 #assignments_button_submitted_amount_button {
@@ -525,6 +539,11 @@ p {
   padding-top: 3%
 }
 
+#no_scores_text{
+  text-align: center;
+  width:97%;
+}
+
 #submit_score_change{
   margin-bottom: 25px;
   margin-left: 30px;
@@ -545,6 +564,7 @@ input[type="file"] {
   margin-left: 20px;
   margin-bottom: 5%;
 }
+
 
 .student_work_image {
   max-width: 400px;

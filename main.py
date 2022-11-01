@@ -42,9 +42,11 @@ def upload_to_bucket(base64_img, name):
 
   blob.upload_from_string(content, content_type="image/jpeg")
 
-  print(f"{name} with contents {content} uploaded to cac-image-storage.")
 
-
+@app.after_request
+def set_headers(response):
+    response.headers["Referrer-Policy"] = 'strict-origin-when-cross-origin'
+    return response
 
 @app.route('/')
 def homepage():
@@ -66,7 +68,7 @@ def create_class():
   class_password = str(request.json.get("class_password"))
   teacher_id = str(request.json.get("teacher_id"))
   student_data = request.json.get("student_data")
-  print(student_data[1])
+
   classes_list = db.search(Query().teacher_id == teacher_id)
 
   for individual_class in classes_list:
@@ -115,7 +117,7 @@ def new_assignment():
   return "", 201
 
 def render_submit_page():
-  print("sus")
+
   return render_template("submit.html")
 
 @app.route('/app')
@@ -142,10 +144,11 @@ def record_score():
   assignments = individual_class["assignments"]
   
   for assignment in individual_class["assignments"]:
+
     if assignment["assignment_name"] == assignment_name:
       assignment_details = assignment
-
-    questions = assignment_details["questions"]
+      questions = assignment_details["questions"]
+      break
 
   for question in questions.items():
     if str(question[1]) in text_string:
@@ -214,7 +217,21 @@ def route_submit_pages(teacher_id, class_name, assignment_name):
       return render_template("submit.html")
   
   return "", 400
+
+@app.route('/student/submit/mobile/<teacher_id>/<class_name>/<assignment_name>')
+def route_mobile_submit_pages(teacher_id, class_name, assignment_name):
+  individual_class = db.get(Query().fragment({'teacher_id': teacher_id, 'class_name': class_name}))
+  assignment_list = individual_class.get("assignments")
+
+
+  for assignment in assignment_list:
+    if assignment["assignment_name"] == assignment_name:
+
+      return render_template("mobile.html")
   
+  return "", 400
+
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+  certs = ("SSLCerts/server.crt", "SSLCerts/server.key")
+  app.run(host='0.0.0.0', port=5000, debug=True)

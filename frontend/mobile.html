@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/browser-image-compression@2.0.0/dist/browser-image-compression.js"></script>
+        <script src="https://kit.fontawesome.com/0e24950e5e.js" crossorigin="anonymous"></script>
+        <script src="/static/js/mobile.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="/static/css/app.css">
+        <link rel="stylesheet" href="/static/css/submit.css">
+        <link rel="stylesheet" href="/static/css/mobile.css">
+        <link rel="icon" type="image/x-icon" href="/static/img/icon.ico">
+        <title>Instant Grader</title>
+    </head>
+    <body onload="display_assignment_info();">
+        <div class = "main" id="main">
+
+            <h2 class="assignment_name_text" id="assignment_name_text">Assignment Name</h2><br>
+            <h2 class="class_name_text" id="class_name_text">Class Name</h2>
+            <form class="student_submit_form" style="position: absolute; margin-top: 68px">
+
+                <div class="inline_input_obj" style="position : absolute; margin-top: 18px">
+                    <label class ="submit_form_text">First Name</label><br>
+                    <input class ="submit_form_input" type="text" id="first_name" name="first_name">
+                </div>
+
+                <div class="inline_input_obj" style="position : absolute; margin-top: 110px">
+                    <label class ="submit_form_text">Last Name</label><br>
+                    <input class ="submit_form_input" type="text" id="last_name" name="last_name">                    
+                </div>
+
+
+                <div class="inline_input_obj" style="position : absolute; margin-top: 200px">
+                    <label class ="submit_form_text" style="padding-top: 50px">Student ID</label><br>
+                    <input class ="submit_form_input" type="text" id="student_id" name="student_id">
+                </div>
+
+                <div class="inline_input_obj" style="position : absolute; margin-top: 290px">
+                    <label class ="submit_form_text" style="padding-top: 50px">Class Password</label><br>
+                    <input class ="submit_form_input" type="text" id="class_password" name="class_password">
+                </div>
+
+                <div class="inline_input_obj" style="margin-top: 390px">
+                    <label class="custom-file-upload">
+                        <input type="file" id="assignment_upload" onchange="save_image();"/>
+                        <i class="fa fa-cloud-upload"></i> Upload Work
+                    </label>
+                </div>
+
+                <div class="inline_input_obj" style="margin-top: 13px">
+                    <button class = "open_submit_details" id="open_submit_details" onclick="show_data_prior_to_submission();" type="button">Next <i class="fa-solid fa-arrow-right-long"></i></button>
+                </div>
+
+            </form> 
+
+            <div id="pre_submit_modal" class="modal">
+
+                <div class="submit_modal_content animate">
+
+                    <div class="pre_submit_modal_container">
+                            <h3 id="modal_title">Submission Details</h3>
+                            <div style="text-align: center;">
+                                <h4 class="pre_submit_details_element" id="name_text"></h4>
+                                <h4 class="pre_submit_details_element" id="student_id_text"></h4>
+                                <h4 class="pre_submit_details_element" id="class_password_text"></h4>
+                            </div>
+                            <div style="text-align: center;">
+                                <img class="assignment_image" id="assignment_image">
+                            </div>
+                            <div style="text-align: center;">
+                                <button class = "pre_submit_modal_button" onclick="document.getElementById('pre_submit_modal').style.display='none'" type="button"><i class="fa-solid fa-arrow-left-long"></i> Back </button>
+                                <button class = "pre_submit_modal_button" onclick="submit_assignment();" type="button">Submit</button>
+                            </div>
+                    </div>
+                
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
