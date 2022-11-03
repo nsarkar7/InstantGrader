@@ -186,7 +186,7 @@ function display_assignments(class_name) {
         link_button.innerHTML = "Copy Submit Link"
         link_button.onclick = function(event) {
             this.innerHTML = "Copied!"
-            navigator.clipboard.writeText("192.168.1.41:5000" + assignment.submit_link);
+            navigator.clipboard.writeText(window.location.host + assignment.submit_link);
             event.stopImmediatePropagation();
         };
 

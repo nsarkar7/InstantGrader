@@ -13,7 +13,7 @@
             <h2 id="assignments_text"">Assignments</h2>
             <button onclick="document.getElementById('new_assignment_modal').style.display='block'" class="new_assignment_button">New Assignment</button>
             <button id="profile_button"><span id="profile_button_text"></span><img id="profile_button_img" referrerpolicy="no-referrer"></button>
-            <button id="logout_button">Sign Out</button>
+            <button onclick="sessionStorage.clear(); window.location.assign('/')" id="logout_button">Sign Out</button>
 
         </div>
 
