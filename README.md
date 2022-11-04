@@ -1,6 +1,6 @@
-#Instant Grader
+# Instant Grader
 
-##AI Grading Assistant, built for teachers
+## AI Grading Assistant, built for teachers
 
 **Built as part of Congressional App Challenge 2022**
 
